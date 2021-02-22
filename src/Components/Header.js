@@ -4,7 +4,7 @@ import logo from "../logo.svg"
 
 export default function header() {
   return (
-    <header>
+    <header className="header">
       <img src={logo} alt="" />
       <h2>
         Store</h2>

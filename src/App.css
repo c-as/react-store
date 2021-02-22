@@ -1,4 +1,4 @@
-header {
+.header {
   width: 100%;
   padding: 0em 6em 0em 0em;
   box-sizing: border-box;
@@ -7,28 +7,28 @@ header {
   color: white;
 }
 
-header img {
   height: 4em;
+.header img {
 }
 
-header h2 {
+.header h2 {
   margin-top: auto;
   margin-bottom: auto;
   margin-right: auto;
 }
 
-header nav {
+.header nav {
   margin-top: auto;
   margin-bottom: auto;
 }
 
-header nav a {
+.header nav a {
   color: white;
   padding: .5em;
   margin-left: .5em;
 }
 
-header nav .active {
+.header nav .active {
   background-color: blue;
   color: white;
   font-weight: 1000;
