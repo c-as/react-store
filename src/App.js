@@ -9,11 +9,12 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path="/cart">Your cart</Route>
-        <Route path="/deals">Current deals</Route>
-        <Route path="/">
+        <Route exact path="/">
           <img src={logo} alt="" height="100" />
         </Route>
+        <Route path="/deals">Current deals</Route>
+
+        <Route path="/cart">Your cart</Route>
       </Switch>
     </Router>
   )
