@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Header from "./Components/Header"
 import Home from "./Pages/Home"
 import Deals from "./Pages/Deals"
+import Item from "./Pages/Item"
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           <Deals />
         </Route>
         <Route path="/cart">Your cart</Route>
+        <Route path="/item">
+          <Item />
+        </Route>
       </Switch>
     </Router>
   )
