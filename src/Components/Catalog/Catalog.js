@@ -6,7 +6,6 @@ export default class Catalog extends Component {
   render() {
     let items = []
     this.props.items.forEach(item => {
-      console.log(item);
       items.push(
         <Item id={item._id}
           name={item.name}
