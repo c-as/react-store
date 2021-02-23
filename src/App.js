@@ -17,7 +17,7 @@ function App() {
           <Deals />
         </Route>
         <Route path="/cart">Your cart</Route>
-        <Route path="/item">
+        <Route path="/item/:id">
           <Item />
         </Route>
       </Switch>

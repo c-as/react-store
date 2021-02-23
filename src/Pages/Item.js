@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom'
 import Api from "../Lib/Api"
 
 class Item extends Component {
   constructor() {
     super()
     this.state = {
-      id: null,
       item: null,
     }
   }
@@ -18,10 +17,7 @@ class Item extends Component {
     )
   }
   async componentDidMount() {
-    let split = this.props.location.pathname.split("/")
-    await this.setState({ id: split[split.length - 1] })
-
-    let item = await Api.getItem(this.state.id)
+    let item = await Api.getItem(this.props.match.params.id)
     await this.setState({ item: item })
   }
 }
