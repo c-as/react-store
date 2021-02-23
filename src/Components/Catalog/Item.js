@@ -10,7 +10,9 @@ export default function Item(props) {
         <span className="helper"></span>
         <img src={props.image} alt={props.name} />
       </div>
-      <header>{props.name}</header>
+      <Link to={`/item/${props.id}`}>
+        <header>{props.name}</header>
+      </Link>
       <div className="info">
         <Rating score={props.rating} />
         <b> ${props.price} </b>
@@ -18,9 +20,8 @@ export default function Item(props) {
           props.isOnSale && <span className="sale">On Sale</span>
         }
       </div>
-
       <Link to={`/item/${props.id}`}>
-        View Item
+        <div className="button">View Item</div>
       </Link>
     </div>
   )
