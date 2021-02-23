@@ -22,8 +22,15 @@
   margin-bottom: auto;
 }
 
-.header nav a {
+.header a {
   color: white;
+}
+
+.header h2 a {
+  text-decoration: none;
+}
+
+.header nav a {
   padding: .5rem;
   margin-left: .5rem;
 }

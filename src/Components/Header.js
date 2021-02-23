@@ -1,13 +1,12 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import logo from "../logo.svg"
 
 export default function header() {
   return (
     <header className="header">
       <img src={logo} alt="" />
-      <h2>
-        Store</h2>
+      <h2><Link to="/">Store</Link></h2>
       <nav>
         <NavLink exact to="/">Home</NavLink>
         <NavLink to="/deals">Deals</NavLink>
