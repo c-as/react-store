@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Catalog from "../Components/Catalog/Catalog"
-import Api from "../Libs/Api"
+import Api from "../Lib/Api"
 
 export default class Items extends Component {
   constructor() {
