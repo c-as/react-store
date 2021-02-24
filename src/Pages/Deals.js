@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 import Catalog from "../Components/Catalog/Catalog"
 import Api from "../Lib/Api"
 
@@ -6,7 +6,7 @@ export default class Items extends Component {
   constructor() {
     super()
     this.state = {
-      items: []
+      items: [],
     }
   }
   render() {
@@ -17,8 +17,7 @@ export default class Items extends Component {
     )
   }
   async componentDidMount() {
-    let items = await Api.getDeals();
+    let items = await Api.getDeals()
     this.setState({ items: items })
   }
 }
-

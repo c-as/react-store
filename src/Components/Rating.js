@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 import PropTypes from "prop-types"
 import FullStar from "../star_full.svg"
 import HalfStar from "../star_half.svg"
@@ -18,17 +18,11 @@ export default class Rating extends Component {
       } else {
         stars.push(<img src={EmptyStar} alt="" key={i} />)
       }
-
     }
-    return (
-      <div className="rating">
-        {stars}
-      </div>
-    )
+    return <div className="rating">{stars}</div>
   }
 }
 
 Rating.defaultProps = {
-  score: PropTypes.number
+  score: PropTypes.number,
 }
-

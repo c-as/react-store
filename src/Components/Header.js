@@ -6,9 +6,13 @@ export default function header() {
   return (
     <header className="header">
       <img src={logo} alt="" />
-      <h2><Link to="/">Store</Link></h2>
+      <h2>
+        <Link to="/">Store</Link>
+      </h2>
       <nav>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/">
+          Home
+        </NavLink>
         <NavLink to="/deals">Deals</NavLink>
         <NavLink to="/cart">Cart</NavLink>
       </nav>

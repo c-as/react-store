@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Header from "./Components/Header"
 import Home from "./Pages/Home"
@@ -25,4 +25,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
