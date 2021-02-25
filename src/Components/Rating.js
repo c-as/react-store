@@ -4,9 +4,9 @@ import FullStar from "../Assets/star_full.svg"
 import HalfStar from "../Assets/star_half.svg"
 import EmptyStar from "../Assets/star_empty.svg"
 
-export default function Rating(props) {
+export default function Rating({ score }) {
   let stars = []
-  let current = props.score
+  let current = score
   for (let i = 0; i < 5; i++) {
     if (current >= 1) {
       stars.push(<img src={FullStar} alt="" key={i} />)

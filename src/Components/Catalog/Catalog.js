@@ -2,11 +2,14 @@ import React from "react"
 import PropTypes from "prop-types"
 import Item from "./Item"
 
-export default function Catalog(props) {
+export default function Catalog({
+  items,
+  message = "Currently no items to show",
+}) {
   return (
     <div className="catalog">
-      {props.items.length > 0 ? (
-        props.items.map((item) => (
+      {items.length > 0 ? (
+        items.map((item) => (
           <Item
             id={item._id}
             name={item.name}
@@ -18,7 +21,7 @@ export default function Catalog(props) {
           />
         ))
       ) : (
-        <div className="message">{props.message}</div>
+        <div className="message">{message}</div>
       )}
     </div>
   )
@@ -27,8 +30,4 @@ export default function Catalog(props) {
 Catalog.propTypes = {
   items: PropTypes.array,
   message: PropTypes.string,
-}
-
-Catalog.defaultProps = {
-  message: "Currently no items to show",
 }
