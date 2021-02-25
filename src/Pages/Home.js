@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Catalog from "../Components/Catalog/Catalog"
 import Api from "../Lib/Api"
 
-export default class Items extends Component {
+export default class Home extends Component {
   state = {
     items: [],
   }
@@ -14,13 +14,21 @@ export default class Items extends Component {
     )
   }
   async componentDidMount() {
-    let items
     try {
-      items = await Api.getItems()
+      let items = await Api.getItems()
       this.setState({ items: items })
     } catch (error) {
-      this.setState({ message: "Error getting items" })
-      return
+      return error
     }
   }
 }
+//     }
+
+//     fetchData()
+//   })
+//   return (
+//     <div>
+//       <Catalog items={items} />
+//     </div>
+//   )
+// }
