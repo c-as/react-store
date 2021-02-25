@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Catalog from "../Components/Catalog/Catalog"
 import Api from "../Lib/Api"
 
-export default class Items extends Component {
+export default class Deals extends Component {
   state = { items: [] }
   render() {
     return (
@@ -16,7 +16,7 @@ export default class Items extends Component {
       let items = await Api.getDeals()
       this.setState({ items: items })
     } catch (error) {
-      this.setState({ items: {}, message: "Error getting deals" })
+      return error
     }
   }
 }
