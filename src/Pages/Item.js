@@ -3,11 +3,8 @@ import { withRouter } from "react-router-dom"
 import Api from "../Lib/Api"
 
 class Item extends Component {
-  constructor() {
-    super()
-    this.state = {
-      item: null,
-    }
+  state = {
+    item: null,
   }
   render() {
     return <div>{JSON.stringify(this.state.item)}</div>

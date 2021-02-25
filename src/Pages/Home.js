@@ -3,11 +3,8 @@ import Catalog from "../Components/Catalog/Catalog"
 import Api from "../Lib/Api"
 
 export default class Items extends Component {
-  constructor() {
-    super()
-    this.state = {
-      items: [],
-    }
+  state = {
+    items: [],
   }
   render() {
     return (
