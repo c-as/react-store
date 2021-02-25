@@ -6,7 +6,7 @@ const api = {
       return (await response.json()).items
     } catch (error) {
       console.error(error)
-      return error
+      throw error
     }
   },
   async getDeals() {
@@ -15,7 +15,7 @@ const api = {
       return (await response.json()).items
     } catch (error) {
       console.error(error)
-      return error
+      throw error
     }
   },
   async getItem(id) {
@@ -24,7 +24,7 @@ const api = {
       return await response.json()
     } catch (error) {
       console.error(error)
-      return error
+      throw error
     }
   },
 }
