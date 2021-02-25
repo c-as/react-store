@@ -24,7 +24,7 @@ export default function Catalog(props) {
   )
 }
 
-Catalog.defaultProps = {
+Catalog.propTypes = {
   items: PropTypes.array,
   message: "Currently no items to show",
 }

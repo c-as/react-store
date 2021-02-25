@@ -21,6 +21,6 @@ export default function Rating(props) {
   return <div className="rating">{stars}</div>
 }
 
-Rating.defaultProps = {
+Rating.propTypes = {
   score: PropTypes.number,
 }

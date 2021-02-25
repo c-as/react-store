@@ -25,7 +25,7 @@ export default function Item(props) {
   )
 }
 
-Item.defaultProps = {
+Item.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
