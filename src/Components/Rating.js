@@ -6,6 +6,7 @@ import EmptyStar from "../Assets/star_empty.svg"
 
 export default function Rating({ score }) {
   const [stars, setStars] = useState()
+
   useEffect(
     function () {
       let stars = []
