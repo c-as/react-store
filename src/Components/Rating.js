@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import FullStar from "../star_full.svg"
-import HalfStar from "../star_half.svg"
-import EmptyStar from "../star_empty.svg"
+import FullStar from "../Assets/star_full.svg"
+import HalfStar from "../Assets/star_half.svg"
+import EmptyStar from "../Assets/star_empty.svg"
 
 export default function Rating(props) {
   let stars = []
