@@ -2,10 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Item from "./Item"
 
-export default function Catalog({
-  items,
-  message = "Currently no items to show",
-}) {
+export default function Catalog({ items, message = "Nothing to show" }) {
   return (
     <div className="catalog">
       {items.length > 0 ? (
