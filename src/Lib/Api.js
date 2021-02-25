@@ -1,17 +1,15 @@
 const api = {
+  url: "https://gp-super-store-api.herokuapp.com",
   async getItems() {
-    let response = await fetch(
-      "https://gp-super-store-api.herokuapp.com/item/list"
-    )
+    let response = await fetch(`${this.url}/item/list`)
     return (await response.json()).items
   },
   async getDeals() {
-    return (await this.getItems()).filter(this.isDeal)
+    let response = await fetch(`${this.url}/item/list?isOnSale=true`)
+    return (await response.json()).items
   },
   async getItem(id) {
-    let response = await fetch(
-      `https://gp-super-store-api.herokuapp.com/item/${id}`
-    )
+    let response = await fetch(`${this.url}/item/${id}`)
     return await response.json()
   },
   isDeal(item) {
