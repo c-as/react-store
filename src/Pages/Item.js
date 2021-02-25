@@ -4,6 +4,7 @@ import Api from "../Lib/Api"
 
 function Item(props) {
   const [item, setItem] = useState()
+
   useEffect(
     function () {
       async function fetchData() {
@@ -19,6 +20,7 @@ function Item(props) {
     },
     [props.match.params.id]
   )
+
   return <div>{JSON.stringify(item)}</div>
 }
 
