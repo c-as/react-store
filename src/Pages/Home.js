@@ -1,34 +1,23 @@
-import React, { Component } from "react"
+import React, { useState, useEffect } from "react"
 import Catalog from "../Components/Catalog/Catalog"
 import Api from "../Lib/Api"
 
-export default class Home extends Component {
-  state = {
-    items: [],
-  }
-  render() {
-    return (
-      <div>
-        <Catalog items={this.state.items} />
-      </div>
-    )
-  }
-  async componentDidMount() {
-    try {
-      let items = await Api.getItems()
-      this.setState({ items: items })
-    } catch (error) {
-      return error
+export default function Home() {
+  const [items, setItems] = useState([])
+  useEffect(function () {
+    async function fetchData() {
+      try {
+        let items = await Api.getItems()
+        setItems(items)
+      } catch (error) {
+        return error
+      }
     }
-  }
+    fetchData()
+  }, [])
+  return (
+    <div>
+      <Catalog items={items} />
+    </div>
+  )
 }
-//     }
-
-//     fetchData()
-//   })
-//   return (
-//     <div>
-//       <Catalog items={items} />
-//     </div>
-//   )
-// }

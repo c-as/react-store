@@ -1,22 +1,23 @@
-import React, { Component } from "react"
+import React, { useState, useEffect } from "react"
 import Catalog from "../Components/Catalog/Catalog"
 import Api from "../Lib/Api"
 
-export default class Deals extends Component {
-  state = { items: [] }
-  render() {
-    return (
-      <div>
-        <Catalog items={this.state.items} message="Currenlty no deals" />
-      </div>
-    )
-  }
-  async componentDidMount() {
-    try {
-      let items = await Api.getDeals()
-      this.setState({ items: items })
-    } catch (error) {
-      return error
+export default function Deals() {
+  const [items, setItems] = useState([])
+  useEffect(function () {
+    async function fetchData() {
+      try {
+        let items = await Api.getDeals()
+        setItems(items)
+      } catch (error) {
+        return error
+      }
     }
-  }
+    fetchData()
+  }, [])
+  return (
+    <div>
+      <Catalog items={items} message="Currenlty no deals" />
+    </div>
+  )
 }
