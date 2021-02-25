@@ -14,7 +14,7 @@ class Item extends Component {
   }
   async componentDidMount() {
     let item = await Api.getItem(this.props.match.params.id)
-    await this.setState({ item: item })
+    this.setState({ item: item })
   }
 }
 
