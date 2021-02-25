@@ -13,8 +13,12 @@ class Item extends Component {
     return <div>{JSON.stringify(this.state.item)}</div>
   }
   async componentDidMount() {
-    let item = await Api.getItem(this.props.match.params.id)
-    this.setState({ item: item })
+    try {
+      let item = await Api.getItem(this.props.match.params.id)
+      this.setState({ item: item })
+    } catch (error) {
+      this.setState({ item: {} })
+    }
   }
 }
 

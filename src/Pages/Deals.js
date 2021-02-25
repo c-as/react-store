@@ -17,7 +17,11 @@ export default class Items extends Component {
     )
   }
   async componentDidMount() {
-    let items = await Api.getDeals()
-    this.setState({ items: items })
+    try {
+      let items = await Api.getDeals()
+      this.setState({ items: items })
+    } catch (error) {
+      this.setState({ items: {}, message: "Error getting deals" })
+    }
   }
 }

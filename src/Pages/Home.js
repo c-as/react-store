@@ -17,7 +17,13 @@ export default class Items extends Component {
     )
   }
   async componentDidMount() {
-    let items = await Api.getItems()
-    this.setState({ items: items })
+    let items
+    try {
+      items = await Api.getItems()
+      this.setState({ items: items })
+    } catch (error) {
+      this.setState({ message: "Error getting items" })
+      return
+    }
   }
 }
