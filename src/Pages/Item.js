@@ -61,7 +61,6 @@ function Item(props) {
         try {
           let item = await Api.getItem(props.match.params.id)
           setItem(item)
-          console.log(item)
         } catch (error) {
           setItem()
         }
@@ -74,7 +73,6 @@ function Item(props) {
 
   function quantityChanged(event) {
     const { value } = event.target
-    console.log(event)
     setQuantity(value)
   }
 
