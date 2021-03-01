@@ -101,10 +101,14 @@ function Item(props) {
   }
 
   function addToCart(event) {
-    if (quantity > 0) {
+    if (quantity === 0) {
+      alert("Out of stock!")
+    } else if (quantity > item.stockCount) {
+      alert("Insufficient stock!")
+    } else if (typeof quantity == Number) {
       alert(`${quantity} added to cart.`)
     } else {
-      alert("Out of stock!")
+      alert("Incorrect input")
     }
   }
 
