@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import FullStar from "../Assets/star_full.svg"
 import HalfStar from "../Assets/star_half.svg"
 import EmptyStar from "../Assets/star_empty.svg"
+import "./Rating.css"
 
 export default function Rating({ score }) {
   const [stars, setStars] = useState()

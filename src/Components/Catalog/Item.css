@@ -1,0 +1,60 @@
+.item {
+  margin: 6px;
+  border: 2px solid gray;
+  text-align: center;
+  padding: 1rem;
+  width: 20rem;
+}
+
+.item .imgContainer {
+  height: 20rem;
+  margin-bottom: 1rem;
+}
+
+.item .imgContainer .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.item .imgContainer img {
+  vertical-align: middle;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.item a {
+  color: black;
+  text-decoration: none;
+}
+
+.item header {
+  font-size: 1.5rem;
+}
+
+.item .info {
+  text-align: left;
+}
+
+.item .info .sale {
+  display: block;
+  width: fit-content;
+  float: inline-start;
+  font-size: 0.8rem;
+  margin: 0rem 0.5rem 0rem 0rem;
+  background-color: red;
+  color: white;
+  padding: 0.2rem;
+  border-radius: 0.15rem;
+}
+
+.item .button {
+  display: block;
+  width: 6rem;
+  margin: 0.5rem auto 0rem;
+  color: white;
+  background-color: orange;
+  padding: 0.4rem;
+  border-radius: 0.2rem;
+  text-decoration: none;
+}

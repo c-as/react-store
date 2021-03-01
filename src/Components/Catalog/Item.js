@@ -2,6 +2,7 @@ import React from "react"
 import Rating from "../Rating"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
+import "./Item.css"
 
 export default function Item({ image, name, id, rating, price, isOnSale }) {
   return (
