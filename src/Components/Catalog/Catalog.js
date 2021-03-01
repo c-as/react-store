@@ -1,11 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Item from "./Item"
-import "./Catalog.css"
+import styled from "styled-components"
+
+const Styled = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+`
 
 export default function Catalog({ items, message = "Nothing to show" }) {
   return (
-    <div className="catalog">
+    <Styled>
       {items.length > 0 ? (
         items.map((item) => (
           <Item
@@ -21,7 +28,7 @@ export default function Catalog({ items, message = "Nothing to show" }) {
       ) : (
         <div className="message">{message}</div>
       )}
-    </div>
+    </Styled>
   )
 }
 
