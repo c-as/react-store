@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Sale from "../Sale"
+import ColorBox from "../ColorBox"
 
 const Styled = styled.div`
   margin: 6px;
@@ -29,7 +30,6 @@ const ImgContainer = styled.div`
     max-width: 100%;
   }
 `
-
 const Helper = styled.span`
   display: inline-block;
   height: 100%;
@@ -38,17 +38,21 @@ const Helper = styled.span`
 
 const Info = styled.div`
   text-align: left;
+  h3 {
+    display: inline;
+  }
 `
 
-const Button = styled.div`
-  display: block;
+const Button = styled(ColorBox)`
   width: 6rem;
-  margin: 0.5rem auto 0rem;
-  color: white;
+  margin: 2rem auto 0rem;
   background-color: orange;
-  padding: 0.4rem;
-  border-radius: 0.2rem;
-  text-decoration: none;
+  color: white;
+`
+
+const StyledSale = styled(Sale)`
+  display: inline;
+  font-size: 0.9rem;
 `
 
 export default function Item({ image, name, id, rating, price, isOnSale }) {
@@ -63,8 +67,8 @@ export default function Item({ image, name, id, rating, price, isOnSale }) {
       </Link>
       <Info>
         <Rating score={rating} />
-        <b> ${price} </b>
-        {isOnSale && <Sale>On Sale</Sale>}
+        <h3> ${price} </h3>
+        {isOnSale && <StyledSale>On Sale</StyledSale>}
       </Info>
       <Link to={`/item/${id}`}>
         <Button>View Item</Button>
