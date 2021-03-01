@@ -8,9 +8,11 @@ import ColorBox from "../Components/ColorBox"
 
 const Styled = styled.div`
   @media (orientation: landscape) {
-    width: 60rem;
+    box-sizing: border-box;
+    width: 70rem;
     max-width: 100%;
-    margin: 5rem auto;
+    margin: 0rem auto;
+    padding: 5rem 5rem;
   }
   @media (orientation: portrait) {
     margin: 1rem 3rem 3rem;
@@ -19,8 +21,9 @@ const Styled = styled.div`
 
 const ProductImg = styled.img`
   @media (orientation: landscape) {
-    width: 50%;
+    width: calc(50% - 1rem);
     float: left;
+    padding-right: 1rem;
   }
   @media (orientation: portrait) {
     display: block;
@@ -31,8 +34,9 @@ const ProductImg = styled.img`
 
 const Info = styled.div`
   @media (orientation: landscape) {
-    width: 50%;
+    width: calc(50% - 1rem);
     float: right;
+    padding-left: 1rem;
   }
   input {
     margin-right: 1rem;
