@@ -19,11 +19,13 @@ const Styled = styled.div`
   }
 `
 
+const seperation = 2
+
 const ProductImg = styled.img`
   @media (orientation: landscape) {
-    width: calc(50% - 1rem);
+    width: calc(50% - ${seperation / 2.0}rem);
     float: left;
-    padding-right: 1rem;
+    padding-right: ${seperation / 2.0}rem;
   }
   @media (orientation: portrait) {
     display: block;
@@ -34,9 +36,9 @@ const ProductImg = styled.img`
 
 const Info = styled.div`
   @media (orientation: landscape) {
-    width: calc(50% - 1rem);
+    width: calc(50% - ${seperation / 2.0}rem);
     float: right;
-    padding-left: 1rem;
+    padding-left: ${seperation / 2.0}rem;
   }
   input {
     margin-right: 1rem;
