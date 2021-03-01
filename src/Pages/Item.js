@@ -7,22 +7,38 @@ import Sale from "../Components/Sale"
 import ColorBox from "../Components/ColorBox"
 
 const Styled = styled.div`
-  width: 60rem;
-  max-width: 100%;
-  margin: 5rem auto;
+  @media (orientation: landscape) {
+    width: 60rem;
+    max-width: 100%;
+    margin: 5rem auto;
+  }
+  @media (orientation: portrait) {
+    margin: 1rem 3rem 3rem;
+  }
 `
 
 const ProductImg = styled.img`
-  width: 50%;
-  float: left;
+  @media (orientation: landscape) {
+    width: 50%;
+    float: left;
+  }
+  @media (orientation: portrait) {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
 `
 
 const Info = styled.div`
-  width: 50%;
-  float: right;
-
+  @media (orientation: landscape) {
+    width: 50%;
+    float: right;
+  }
   input {
     margin-right: 1rem;
+  }
+  span {
+    display: inline-block;
   }
 `
 
@@ -109,7 +125,7 @@ function Item(props) {
                 onChange={(event) => quantityChanged(event)}
                 step="1"
               />
-              In stock: {item.stockCount}
+              <span>In stock: {item.stockCount}</span>
             </p>
             <Button onClick={(event) => addToCart(event)}>Add to cart</Button>
             {(item.stockCount < 1 || quantity > item.stockCount) && (
