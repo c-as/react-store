@@ -3,6 +3,7 @@ import Rating from "../Rating"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import Sale from "../Sale"
 
 const Styled = styled.div`
   margin: 6px;
@@ -39,18 +40,6 @@ const Info = styled.div`
   text-align: left;
 `
 
-const Sale = styled.span`
-  display: block;
-  width: fit-content;
-  float: inline-start;
-  font-size: 0.8rem;
-  margin: 0rem 0.5rem 0rem 0rem;
-  background-color: red;
-  color: white;
-  padding: 0.2rem;
-  border-radius: 0.15rem;
-`
-
 const Button = styled.div`
   display: block;
   width: 6rem;
@@ -75,7 +64,7 @@ export default function Item({ image, name, id, rating, price, isOnSale }) {
       <Info>
         <Rating score={rating} />
         <b> ${price} </b>
-        {isOnSale && <Sale className="sale">On Sale</Sale>}
+        {isOnSale && <Sale>On Sale</Sale>}
       </Info>
       <Link to={`/item/${id}`}>
         <Button>View Item</Button>
