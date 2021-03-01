@@ -1,7 +1,4 @@
 .catalog {
-  width: 100rem;
-  max-width: 100%;
-  margin: 1rem auto;
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;

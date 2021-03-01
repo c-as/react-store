@@ -9,18 +9,20 @@ function App() {
   return (
     <Router>
       <Header />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/deals">
-          <Deals />
-        </Route>
-        <Route path="/cart">Your cart</Route>
-        <Route path="/item/:id">
-          <Item />
-        </Route>
-      </Switch>
+      <div className="pageContainer">
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/deals">
+            <Deals />
+          </Route>
+          <Route path="/cart">Your cart</Route>
+          <Route path="/item/:id">
+            <Item />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   )
 }
