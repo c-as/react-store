@@ -8,7 +8,8 @@ import ColorBox from "../ColorBox"
 
 const Styled = styled.div`
   margin: 6px;
-  border: 2px solid gray;
+  border: 2px solid lightgray;
+  border-radius: 0.5rem;
   text-align: center;
   padding: 1rem;
   width: 20rem;
