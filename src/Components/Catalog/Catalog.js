@@ -4,6 +4,9 @@ import Item from "./Item"
 import styled from "styled-components"
 
 const Styled = styled.div`
+  width: 95rem;
+  max-width: 100%;
+  margin: 1rem auto;
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
