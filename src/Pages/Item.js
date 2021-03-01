@@ -53,7 +53,7 @@ const Error = styled(ColorBox)`
 
 function Item(props) {
   const [item, setItem] = useState()
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(0)
 
   useEffect(
     function () {
@@ -61,6 +61,10 @@ function Item(props) {
         try {
           let item = await Api.getItem(props.match.params.id)
           setItem(item)
+
+          if (item.stockCount > 0) {
+            setQuantity(1)
+          }
         } catch (error) {
           setItem()
         }
@@ -77,7 +81,11 @@ function Item(props) {
   }
 
   function addToCart(event) {
-    alert(`${quantity} added to cart.`)
+    if (quantity > 0) {
+      alert(`${quantity} added to cart.`)
+    } else {
+      alert("Out of stock!")
+    }
   }
 
   return (
