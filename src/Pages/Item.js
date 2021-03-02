@@ -99,7 +99,7 @@ function Item(props) {
 
   function quantityChanged(event) {
     const { value } = event.target
-    setQuantity(value)
+    setQuantity(Number(value))
   }
 
   function addToCart(event) {
@@ -126,7 +126,6 @@ function Item(props) {
             <p>{item.description}</p>
             <h3>${item.price}</h3>
             <p>
-              Quantity:{" "}
               <input
                 type="number"
                 min="1"
