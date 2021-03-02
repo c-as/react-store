@@ -7,12 +7,13 @@ import Sale from "../Sale"
 import ColorBox from "../ColorBox"
 
 const Styled = styled.div`
-  margin: 6px;
+  margin: 0.5rem;
   border: 2px solid lightgray;
   border-radius: 0.5rem;
   text-align: center;
   padding: 1rem;
   width: 20rem;
+  flex-grow: 1;
   a {
     color: black;
     text-decoration: none;
