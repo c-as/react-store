@@ -4,6 +4,7 @@ import Header from "./Components/Header"
 import Home from "./Pages/Home"
 import Deals from "./Pages/Deals"
 import Item from "./Pages/Item"
+import Search from "./Pages/Search"
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         <Route path="/cart">Your cart</Route>
         <Route path="/item/:id">
           <Item />
+        </Route>
+        <Route path="/search">
+          <Search />
         </Route>
       </Switch>
     </Router>
