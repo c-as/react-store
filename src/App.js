@@ -24,6 +24,9 @@ function App() {
         <Route path="/search">
           <Search />
         </Route>
+        <Route>
+          <h1 style={{ textAlign: "center" }}>404 not found</h1>
+        </Route>
       </Switch>
     </Router>
   )
