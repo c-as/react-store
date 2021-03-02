@@ -8,19 +8,17 @@ const Styled = styled.div`
   padding: 0rem 0.5rem;
 `
 
-const searchButtonWidth = 5
-
 const Container = styled.div`
   width: 30rem;
   max-width: 100%;
   margin: 0rem auto;
   padding: 0.5rem 0rem 0rem;
   height: 1.8rem;
+  display: flex;
   input {
+    flex-grow: 1;
     border-radius: 0.5rem 0rem 0rem 0.5rem;
     padding: 0rem 0.5rem;
-    height: 100%;
-    width: calc(100% - ${searchButtonWidth}rem);
     box-sizing: border-box;
     border: 1px solid grey;
     border-right: none;
@@ -28,18 +26,29 @@ const Container = styled.div`
       outline: none;
     }
   }
-  button {
-    width: ${searchButtonWidth}rem;
-    height: 100%;
-    border: 1px solid orange;
-    border-left: none;
-    border-radius: 0rem 0.5rem 0.5rem 0rem;
-    background-color: orange;
-    color: white;
-    cursor: pointer;
-    :focus {
-      outline: none;
-    }
+`
+
+const SearchButton = styled.button`
+  border: 1px solid orange;
+  border-left: none;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  background-color: orange;
+  color: white;
+  cursor: pointer;
+  :focus {
+    outline: none;
+  }
+`
+
+const ClearButton = styled.button`
+  border: 1px solid grey;
+  border-left: none;
+  border-right: none;
+  background-color: white;
+  font-weight: 1000;
+  cursor: pointer;
+  :focus {
+    outline: none;
   }
 `
 
@@ -61,7 +70,8 @@ export default function SearchBar({ onSearch }) {
     <Styled>
       <Container>
         <input type="text" onChange={(event) => onQueryInput(event)} />
-        <button onClick={(event) => onSubmit(event)}>search</button>
+        <ClearButton>X</ClearButton>
+        <SearchButton onClick={(event) => onSubmit(event)}>search</SearchButton>
       </Container>
     </Styled>
   )
