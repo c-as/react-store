@@ -107,7 +107,7 @@ function Item(props) {
       alert("Out of stock!")
     } else if (quantity > item.stockCount) {
       alert("Insufficient stock!")
-    } else if (typeof quantity == Number) {
+    } else if (typeof quantity == "number") {
       alert(`${quantity} added to cart.`)
     } else {
       alert("Incorrect input")
