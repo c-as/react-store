@@ -27,6 +27,15 @@ const api = {
       throw error
     }
   },
+  async getSearch(query) {
+    try {
+      let response = await fetch(`${this.url}/item/list?q=${query}`)
+      return (await response.json()).items
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+  },
 }
 
 export default api
