@@ -13,24 +13,26 @@ const Styled = styled.div`
   justify-content: center;
 `
 
-export default function Catalog({ items, message = "Nothing to show" }) {
+export default function Catalog({
+  items,
+  message = "Nothing to show",
+  isLoading = false,
+}) {
   return (
     <Styled>
-      {items.length > 0 ? (
-        items.map((item) => (
-          <Item
-            id={item._id}
-            name={item.name}
-            price={item.price}
-            rating={item.avgRating}
-            isOnSale={item.isOnSale}
-            image={item.imageUrl}
-            key={item._id}
-          />
-        ))
-      ) : (
-        <div className="message">{message}</div>
-      )}
+      {items.length > 0
+        ? items.map((item) => (
+            <Item
+              id={item._id}
+              name={item.name}
+              price={item.price}
+              rating={item.avgRating}
+              isOnSale={item.isOnSale}
+              image={item.imageUrl}
+              key={item._id}
+            />
+          ))
+        : !isLoading && <div className="message">{message}</div>}
     </Styled>
   )
 }
@@ -38,4 +40,5 @@ export default function Catalog({ items, message = "Nothing to show" }) {
 Catalog.propTypes = {
   items: PropTypes.array,
   message: PropTypes.string,
+  isLoading: PropTypes.bool,
 }

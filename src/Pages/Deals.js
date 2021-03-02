@@ -5,6 +5,7 @@ import Api from "../Lib/Api"
 export default function Deals() {
   const [items, setItems] = useState([])
   const [errorMsg, setErrorMsg] = useState()
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(function () {
     async function fetchData() {
@@ -15,6 +16,8 @@ export default function Deals() {
       } catch (error) {
         setErrorMsg("Could not fetch deals")
         return error
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -26,6 +29,7 @@ export default function Deals() {
       <Catalog
         items={items}
         message={errorMsg ? errorMsg : "Currenlty no deals"}
+        isLoading={isLoading}
       />
     </div>
   )

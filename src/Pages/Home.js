@@ -5,6 +5,7 @@ import Api from "../Lib/Api"
 export default function Home() {
   const [items, setItems] = useState([])
   const [errorMsg, setErrorMsg] = useState()
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(function () {
     async function fetchData() {
@@ -15,6 +16,8 @@ export default function Home() {
       } catch (error) {
         setErrorMsg("Could not fetch items")
         return error
+      } finally {
+        setLoading(false)
       }
     }
     fetchData()
@@ -22,7 +25,7 @@ export default function Home() {
 
   return (
     <div>
-      <Catalog items={items} message={errorMsg} />
+      <Catalog items={items} message={errorMsg} isLoading={isLoading} />
     </div>
   )
 }

@@ -76,6 +76,7 @@ const Error = styled(ColorBox)`
 function Item(props) {
   const [item, setItem] = useState()
   const [quantity, setQuantity] = useState(0)
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(
     function () {
@@ -89,6 +90,8 @@ function Item(props) {
           }
         } catch (error) {
           setItem()
+        } finally {
+          setLoading(false)
         }
       }
 
@@ -144,7 +147,7 @@ function Item(props) {
           </Info>
         </div>
       ) : (
-        <Error>Could not fetch item</Error>
+        !isLoading && <Error>Could not fetch item</Error>
       )}
     </Styled>
   )
