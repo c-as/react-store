@@ -69,8 +69,12 @@ export default function SearchBar({ onSearch }) {
   return (
     <Styled>
       <Container>
-        <input type="text" onChange={(event) => onQueryInput(event)} />
-        <ClearButton>X</ClearButton>
+        <input
+          type="text"
+          onChange={(event) => onQueryInput(event)}
+          value={query}
+        />
+        <ClearButton onClick={() => setQuery("")}>X</ClearButton>
         <SearchButton onClick={(event) => onSubmit(event)}>search</SearchButton>
       </Container>
     </Styled>
