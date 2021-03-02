@@ -12,7 +12,6 @@ export default function Deals() {
       try {
         let items = await Api.getDeals()
         setItems(items)
-        setErrorMsg()
       } catch (error) {
         setErrorMsg("Could not fetch deals")
         return error

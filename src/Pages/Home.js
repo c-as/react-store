@@ -12,7 +12,6 @@ export default function Home() {
       try {
         let items = await Api.getItems()
         setItems(items)
-        setErrorMsg()
       } catch (error) {
         setErrorMsg("Could not fetch items")
         return error
