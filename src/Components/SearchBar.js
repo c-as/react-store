@@ -8,7 +8,7 @@ const Styled = styled.div`
   padding: 0rem 0.5rem;
 `
 
-const Container = styled.div`
+const Container = styled.form`
   width: 30rem;
   max-width: 100%;
   margin: 0rem auto;
@@ -66,16 +66,25 @@ export default function SearchBar({ onSearch }) {
     setQuery(value)
   }
 
+  function onKeyDown(event) {
+    if (event.keyCode === 27) {
+      setQuery("")
+    }
+  }
+
   return (
     <Styled>
-      <Container>
+      <Container onSubmit={onSubmit}>
         <input
           type="text"
-          onChange={(event) => onQueryInput(event)}
+          onChange={onQueryInput}
+          onKeyDown={onKeyDown}
           value={query}
         />
-        <ClearButton onClick={() => setQuery("")}>X</ClearButton>
-        <SearchButton onClick={(event) => onSubmit(event)}>search</SearchButton>
+        <ClearButton type="reset" onClick={() => setQuery("")}>
+          X
+        </ClearButton>
+        <SearchButton type="submit">search</SearchButton>
       </Container>
     </Styled>
   )
