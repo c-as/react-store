@@ -10,13 +10,15 @@ const Styled = styled.div`
 `
 
 const Container = styled.form`
-  width: 30rem;
+  width: 40rem;
   max-width: 100%;
   margin: 0rem auto;
   padding: 0.5rem 0rem 0rem;
   display: flex;
   input {
+    min-width: 0;
     flex-grow: 1;
+    font: inherit;
     border-radius: 0.2rem 0rem 0rem 0.2rem;
     padding: 0.4rem;
     padding-left: 0.9rem;
@@ -25,6 +27,8 @@ const Container = styled.form`
     border-right: none;
     :focus {
       outline: none;
+      border-radius: 0.2rem;
+      border: 1px solid deepskyblue;
     }
   }
 `
