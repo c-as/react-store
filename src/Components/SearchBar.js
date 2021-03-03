@@ -17,7 +17,7 @@ const Container = styled.form`
   display: flex;
   input {
     flex-grow: 1;
-    border-radius: 0.5rem 0rem 0rem 0.5rem;
+    border-radius: 0.2rem 0rem 0rem 0.2rem;
     padding: 0rem 0.5rem;
     box-sizing: border-box;
     border: 1px solid grey;
@@ -31,7 +31,7 @@ const Container = styled.form`
 const SearchButton = styled.button`
   border: 1px solid orange;
   border-left: none;
-  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  border-radius: 0rem 0.2rem 0.2rem 0rem;
   background-color: orange;
   color: white;
   cursor: pointer;
