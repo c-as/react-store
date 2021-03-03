@@ -55,7 +55,7 @@ const ClearButton = styled.button`
 
 function SearchBar({ onSearch, location }) {
   const [query, setQuery] = useState(() => {
-    return new URLSearchParams(location.search).get("q")
+    return new URLSearchParams(location.search).get("q") || ""
   })
 
   function Submit() {
