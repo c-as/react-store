@@ -13,7 +13,6 @@ export default function useList(query) {
         try {
           const response = await fetch(query)
           const json = await response.json()
-          console.log(json)
           setJson(json)
         } catch (error) {
           console.log(error)
