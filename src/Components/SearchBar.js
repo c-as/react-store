@@ -19,7 +19,7 @@ const Container = styled.form`
     min-width: 0;
     flex-grow: 1;
     font: inherit;
-    border-radius: 0.2rem 0rem 0rem 0.2rem;
+    border-radius: 0.3rem 0rem 0rem 0.3rem;
     padding: 0.4rem;
     padding-left: 0.9rem;
     box-sizing: border-box;
@@ -27,7 +27,7 @@ const Container = styled.form`
     border-right: none;
     :focus {
       outline: none;
-      border-radius: 0.2rem;
+      border-radius: 0.3rem;
       border: 1px solid deepskyblue;
     }
   }
@@ -37,7 +37,7 @@ const SearchButton = styled.button`
   border: 1px solid orange;
   padding: 0.4rem 1.5rem;
   border-left: none;
-  border-radius: 0rem 0.2rem 0.2rem 0rem;
+  border-radius: 0rem 0.3rem 0.3rem 0rem;
   background-color: orange;
   color: white;
   font: inherit;

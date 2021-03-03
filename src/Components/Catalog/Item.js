@@ -9,7 +9,7 @@ import ColorBox from "../ColorBox"
 const Styled = styled.div`
   margin: 0.5rem;
   border: 1px solid lightgray;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   text-align: center;
   padding: 1rem;
   width: 15rem;

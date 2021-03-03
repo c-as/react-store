@@ -54,7 +54,7 @@ const Button = styled.div`
   color: white;
   background-color: orange;
   padding: 0.4rem;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   text-decoration: none;
   cursor: pointer;
 `
