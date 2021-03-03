@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { withRouter } from "react-router-dom"
 import styled from "styled-components"
 import PropTypes from "prop-types"
@@ -54,15 +54,9 @@ const ClearButton = styled.button`
 `
 
 function SearchBar({ onSearch, location }) {
-  const [query, setQuery] = useState("")
-
-  useEffect(() => {
-    const search = location.search
-    const rawQuery = new URLSearchParams(search).get("q")
-    if (rawQuery) {
-      setQuery(rawQuery)
-    }
-  }, [location.search])
+  const [query, setQuery] = useState(() => {
+    return new URLSearchParams(location.search).get("q")
+  })
 
   function Submit() {
     onSearch(query)
@@ -81,6 +75,9 @@ function SearchBar({ onSearch, location }) {
       Submit()
     }
   }
+
+  //TODO
+  // maak er weer een form van
 
   return (
     <Styled>
