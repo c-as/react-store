@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import { withRouter } from "react-router-dom"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
@@ -8,7 +9,7 @@ const Styled = styled.div`
   padding: 0rem 0.5rem;
 `
 
-const Container = styled.form`
+const Container = styled.div`
   width: 30rem;
   max-width: 100%;
   margin: 0rem auto;
@@ -52,39 +53,46 @@ const ClearButton = styled.button`
   }
 `
 
-export default function SearchBar({ onSearch }) {
+function SearchBar({ onSearch, location }) {
   const [query, setQuery] = useState("")
 
-  function onSubmit(event) {
-    if (onSearch && query.length > 0) {
-      onSearch(query)
+  useEffect(() => {
+    const search = location.search
+    const rawQuery = new URLSearchParams(search).get("q")
+    if (rawQuery) {
+      setQuery(rawQuery)
     }
+  }, [location.search])
+
+  function Submit() {
+    onSearch(query)
   }
 
-  function onQueryInput(event) {
-    const { value } = event.target
-    setQuery(value)
+  function Reset() {
+    setQuery("")
+    onSearch("")
   }
 
-  function onKeyDown(event) {
+  async function onKeyDown(event) {
     if (event.keyCode === 27) {
-      setQuery("")
+      Reset()
+    }
+    if (event.keyCode === 13) {
+      Submit()
     }
   }
 
   return (
     <Styled>
-      <Container onSubmit={onSubmit}>
+      <Container>
         <input
           type="text"
-          onChange={onQueryInput}
+          onChange={(event) => setQuery(event.target.value)}
           onKeyDown={onKeyDown}
           value={query}
         />
-        <ClearButton type="reset" onClick={() => setQuery("")}>
-          X
-        </ClearButton>
-        <SearchButton type="submit">search</SearchButton>
+        <ClearButton onClick={Reset}>X</ClearButton>
+        <SearchButton onClick={Submit}>search</SearchButton>
       </Container>
     </Styled>
   )
@@ -93,3 +101,5 @@ export default function SearchBar({ onSearch }) {
 SearchBar.propTypes = {
   onSearch: PropTypes.func,
 }
+
+export default withRouter(SearchBar)
