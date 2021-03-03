@@ -9,7 +9,7 @@ const Styled = styled.div`
   padding: 0rem 0.5rem;
 `
 
-const Container = styled.div`
+const Container = styled.form`
   width: 30rem;
   max-width: 100%;
   margin: 0rem auto;
@@ -58,7 +58,8 @@ function SearchBar({ onSearch, location }) {
     return new URLSearchParams(location.search).get("q") || ""
   })
 
-  function Submit() {
+  function Submit(event) {
+    event.preventDefault()
     onSearch(query)
   }
 
@@ -71,25 +72,23 @@ function SearchBar({ onSearch, location }) {
     if (event.keyCode === 27) {
       Reset()
     }
-    if (event.keyCode === 13) {
-      Submit()
-    }
   }
-
-  //TODO
-  // maak er weer een form van
 
   return (
     <Styled>
-      <Container>
+      <Container action="#" onSubmit={Submit}>
         <input
           type="text"
           onChange={(event) => setQuery(event.target.value)}
           onKeyDown={onKeyDown}
           value={query}
         />
-        <ClearButton onClick={Reset}>X</ClearButton>
-        <SearchButton onClick={Submit}>search</SearchButton>
+        <ClearButton type="reset" onClick={Reset}>
+          X
+        </ClearButton>
+        <SearchButton type="submit" onClick={Submit}>
+          search
+        </SearchButton>
       </Container>
     </Styled>
   )
