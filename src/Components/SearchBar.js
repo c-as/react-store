@@ -68,7 +68,7 @@ function SearchBar({ onSearch, location }) {
     onSearch("")
   }
 
-  async function onKeyDown(event) {
+  async function onKeyUp(event) {
     if (event.keyCode === 27) {
       Reset()
     }
@@ -80,7 +80,7 @@ function SearchBar({ onSearch, location }) {
         <input
           type="text"
           onChange={(event) => setQuery(event.target.value)}
-          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
           value={query}
         />
         <ClearButton type="reset" onClick={Reset}>
