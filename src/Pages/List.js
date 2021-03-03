@@ -30,10 +30,6 @@ function List(props) {
       props.history.push(`/`)
     }
   }
-  //TODO
-  // maak get search query hook
-
-  console.log(error && error.toString())
 
   return (
     <div>
