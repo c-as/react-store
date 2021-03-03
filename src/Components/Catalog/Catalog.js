@@ -6,7 +6,7 @@ import styled from "styled-components"
 const Styled = styled.div`
   width: 95rem;
   max-width: 100%;
-  margin: 0.5rem auto;
+  margin: 0rem auto;
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
