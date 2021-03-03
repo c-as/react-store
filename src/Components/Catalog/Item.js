@@ -12,7 +12,7 @@ const Styled = styled.div`
   border-radius: 0.5rem;
   text-align: center;
   padding: 1rem;
-  width: 20rem;
+  width: 15rem;
   flex-grow: 1;
   a {
     color: black;
@@ -24,7 +24,7 @@ const Styled = styled.div`
 `
 
 const ImgContainer = styled.div`
-  height: 20rem;
+  height: 15rem;
   margin-bottom: 1rem;
   img {
     vertical-align: middle;
