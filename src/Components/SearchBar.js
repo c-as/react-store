@@ -14,14 +14,14 @@ const Container = styled.form`
   max-width: 100%;
   margin: 0rem auto;
   padding: 0.5rem 0rem 0rem;
-  height: 1.8rem;
   display: flex;
   input {
     flex-grow: 1;
     border-radius: 0.2rem 0rem 0rem 0.2rem;
-    padding: 0rem 0.5rem;
+    padding: 0.4rem;
+    padding-left: 0.9rem;
     box-sizing: border-box;
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
     border-right: none;
     :focus {
       outline: none;
@@ -31,10 +31,12 @@ const Container = styled.form`
 
 const SearchButton = styled.button`
   border: 1px solid orange;
+  padding: 0.4rem 1.5rem;
   border-left: none;
   border-radius: 0rem 0.2rem 0.2rem 0rem;
   background-color: orange;
   color: white;
+  font: inherit;
   cursor: pointer;
   :focus {
     outline: none;
@@ -42,11 +44,13 @@ const SearchButton = styled.button`
 `
 
 const ClearButton = styled.button`
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
+  padding: 0rem 1rem;
   border-left: none;
   border-right: none;
   background-color: white;
   font-weight: 1000;
+  font: inherit;
   cursor: pointer;
   :focus {
     outline: none;
@@ -87,7 +91,7 @@ function SearchBar({ onSearch, location }) {
           X
         </ClearButton>
         <SearchButton type="submit" onClick={Submit}>
-          search
+          Search
         </SearchButton>
       </Container>
     </Styled>

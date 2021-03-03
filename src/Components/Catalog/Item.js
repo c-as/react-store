@@ -8,7 +8,7 @@ import ColorBox from "../ColorBox"
 
 const Styled = styled.div`
   margin: 0.5rem;
-  border: 2px solid lightgray;
+  border: 1px solid lightgray;
   border-radius: 0.5rem;
   text-align: center;
   padding: 1rem;
@@ -46,7 +46,9 @@ const Info = styled.div`
 `
 
 const Button = styled(ColorBox)`
-  width: 6rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: max-content;
   margin: 2rem auto 0rem;
   background-color: orange;
   color: white;
