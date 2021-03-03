@@ -50,7 +50,14 @@ export default function header() {
         <NavLink exact to="/">
           Home
         </NavLink>
-        <NavLink to="/list?isOnSale=true">Deals</NavLink>
+        <NavLink
+          isActive={(match, location) => {
+            return location.search.includes("isOnSale=true")
+          }}
+          to="/list?isOnSale=true"
+        >
+          Deals
+        </NavLink>
         <NavLink to="/cart">Cart</NavLink>
       </nav>
     </Styled>
