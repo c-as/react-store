@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Item from "./Item"
 import styled from "styled-components"
+import ColorBox from "../ColorBox"
 
 const Styled = styled.div`
   width: 95rem;
@@ -11,6 +12,10 @@ const Styled = styled.div`
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: center;
+`
+
+const StyledColorBox = styled(ColorBox)`
+  background-color: moccasin;
 `
 
 export default function Catalog({
@@ -32,7 +37,7 @@ export default function Catalog({
               key={item._id}
             />
           ))
-        : !isLoading && <div className="message">{message}</div>}
+        : !isLoading && <StyledColorBox>{message}</StyledColorBox>}
     </Styled>
   )
 }
