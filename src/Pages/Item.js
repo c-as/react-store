@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { withRouter } from "react-router-dom"
-import Api from "../Lib/Api"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
 import ColorBox from "../Components/ColorBox"
+import useItem from "../Hooks/useItem"
 
 const Styled = styled.div`
   @media (orientation: landscape) {
@@ -74,38 +74,22 @@ const Error = styled(ColorBox)`
 `
 
 function Item(props) {
-  const [item, setItem] = useState()
+  const { item, isLoading, error } = useItem(props.match.params.id)
+
   const [quantity, setQuantity] = useState(0)
-  const [isLoading, setLoading] = useState(true)
 
-  useEffect(
-    function () {
-      async function fetchData() {
-        try {
-          let item = await Api.getItem(props.match.params.id)
-          setItem(item)
-
-          if (item.stockCount > 0) {
-            setQuantity(1)
-          }
-        } catch (error) {
-          setItem()
-        } finally {
-          setLoading(false)
-        }
-      }
-
-      fetchData()
-    },
-    [props.match.params.id]
-  )
+  useEffect(() => {
+    if (item.stockCount > 0) {
+      setQuantity(1)
+    }
+  }, [item])
 
   function quantityChanged(event) {
     const { value } = event.target
     setQuantity(Number(value))
   }
 
-  function addToCart(event) {
+  function addToCart() {
     if (quantity === 0) {
       alert("Out of stock!")
     } else if (quantity > item.stockCount) {
@@ -147,7 +131,7 @@ function Item(props) {
           </Info>
         </div>
       ) : (
-        !isLoading && <Error>Could not fetch item</Error>
+        !isLoading && <Error>{error.toString()}</Error>
       )}
     </Styled>
   )

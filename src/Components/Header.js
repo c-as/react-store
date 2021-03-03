@@ -50,7 +50,7 @@ export default function header() {
         <NavLink exact to="/">
           Home
         </NavLink>
-        <NavLink to="/deals">Deals</NavLink>
+        <NavLink to="/list?isOnSale=true">Deals</NavLink>
         <NavLink to="/cart">Cart</NavLink>
       </nav>
     </Styled>

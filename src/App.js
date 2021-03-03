@@ -1,10 +1,8 @@
 import "./App.css"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Header from "./Components/Header"
-import Home from "./Pages/Home"
-import Deals from "./Pages/Deals"
 import Item from "./Pages/Item"
-import Search from "./Pages/Search"
+import List from "./Pages/List"
 
 function App() {
   return (
@@ -12,17 +10,14 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/deals">
-          <Deals />
+          <List />
         </Route>
         <Route path="/cart">Your cart</Route>
         <Route path="/item/:id">
           <Item />
         </Route>
-        <Route path="/search">
-          <Search />
+        <Route path="/list">
+          <List />
         </Route>
         <Route>
           <h1 style={{ textAlign: "center" }}>404 not found</h1>
