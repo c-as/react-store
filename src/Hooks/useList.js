@@ -5,7 +5,7 @@ export default function useItem(query) {
   const result = useFetch(`${Api}/item/list/${query}`)
 
   return {
-    items: result.json ? result.json.items : [],
+    result: result.json ? result.json : {},
     isLoading: result.isLoading,
     error: result.error,
   }
