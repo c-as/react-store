@@ -7,7 +7,7 @@ const Styled = styled.header`
   width: 100%;
   padding: 0em 1em 0em 0rem;
   box-sizing: border-box;
-  background-color: rgb(4, 0, 255);
+  background-color: blue;
   display: flex;
   color: white;
   a {

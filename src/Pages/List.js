@@ -21,10 +21,10 @@ const PageSelector = styled.div`
     }
   }
   button {
-    border: 1px solid blue;
+    border: 1px solid orange;
     padding: 0.4rem 1.5rem;
     border-radius: 0.3rem;
-    background-color: blue;
+    background-color: orange;
     color: white;
     font: inherit;
     cursor: pointer;
