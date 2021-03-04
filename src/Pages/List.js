@@ -15,10 +15,19 @@ const PageSelector = styled.div`
     display: inline-block;
   }
   * {
-    margin-right: 2rem;
+    margin-right: 1rem;
     :last-child {
       margin-right: 0rem;
     }
+  }
+  button {
+    border: 1px solid blue;
+    padding: 0.4rem 1.5rem;
+    border-radius: 0.3rem;
+    background-color: blue;
+    color: white;
+    font: inherit;
+    cursor: pointer;
   }
 `
 
