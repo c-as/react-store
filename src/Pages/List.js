@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react"
-import { withRouter } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import styled from "styled-components"
 
 import useList from "../Hooks/useList"
@@ -22,7 +22,10 @@ const PageSelector = styled.div`
   }
 `
 
-function List(props) {
+export default function List() {
+  const history = useHistory()
+  const location = useLocation()
+
   const MAX_ITEMS = 10
 
   const [pageIdx, setPageIdx] = useState(0)
@@ -34,13 +37,13 @@ function List(props) {
   // TODO
   // use history
   const { items, isLoading, error } = useList(
-    `?${props.location.search.replace("?", "")}&from=${
+    `?${location.search.replace("?", "")}&from=${
       pageIdx * MAX_ITEMS
     }&size=${MAX_ITEMS}`
   )
   const searchQuery = useMemo(() => {
-    return new URLSearchParams(props.location.search).get("q")
-  }, [props.location.search])
+    return new URLSearchParams(location.search).get("q")
+  }, [location.search])
 
   const message = useMemo(() => {
     if (error) {
@@ -54,9 +57,9 @@ function List(props) {
 
   function onSearch(query) {
     if (query.length > 0) {
-      props.history.push(`/list?q=${query}`)
+      history.push(`/list?q=${query}`)
     } else {
-      props.history.push(`/`)
+      history.push(`/`)
     }
   }
 
@@ -99,5 +102,3 @@ function List(props) {
     </div>
   )
 }
-
-export default withRouter(List)
