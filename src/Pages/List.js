@@ -91,26 +91,24 @@ export default function List() {
       <div>
         <SearchBar onSearch={onSearch} />
         <Catalog items={items} isLoading={isLoading} message={message} />
-        {pageCount > 0 && (
-          <PageSelector>
-            {pageIdx !== 0 && (
-              <>
-                <button onClick={() => setPageIdx(0)}>First</button>
-                <button onClick={decrementPage}>{"<"}</button>
-              </>
-            )}
+        <PageSelector>
+          {pageIdx !== 0 && (
+            <>
+              <button onClick={() => setPageIdx(0)}>First</button>
+              <button onClick={decrementPage}>{"<"}</button>
+            </>
+          )}
 
-            <span>{`${pageIdx + 1}/${pageCount}`}</span>
+          <span>{`${pageIdx + 1}/${pageCount}`}</span>
 
-            {pageIdx !== pageCount - 1 && (
-              <>
-                <button onClick={incrementPage}>{">"}</button>
+          {pageIdx !== pageCount - 1 && (
+            <>
+              <button onClick={incrementPage}>{">"}</button>
 
-                <button onClick={() => setPageIdx(pageCount - 1)}>Last</button>
-              </>
-            )}
-          </PageSelector>
-        )}
+              <button onClick={() => setPageIdx(pageCount - 1)}>Last</button>
+            </>
+          )}
+        </PageSelector>
       </div>
     </div>
   )
