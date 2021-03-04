@@ -28,7 +28,15 @@ export default function List() {
 
   const MAX_ITEMS = 10
 
-  const [pageIdx, setPageIdx] = useState(0)
+  const pageIdx = useMemo(() => {
+    return Number(new URLSearchParams(location.search).get("page")) || 0
+  }, [location.search])
+
+  function setPageIdx(value) {
+    const queries = new URLSearchParams(location.search)
+    queries.set("page", value)
+    history.push({ search: queries.toString() })
+  }
 
   const { result, isLoading, error } = useList(
     `?${location.search.replace("?", "")}&from=${
@@ -39,9 +47,6 @@ export default function List() {
   const pageCount = useMemo(() => {
     return Math.ceil(result.total / MAX_ITEMS) || 0
   }, [result.total])
-
-  // TODO
-  // use history
 
   const items = useMemo(() => {
     return result.items || []
