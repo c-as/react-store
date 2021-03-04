@@ -30,17 +30,23 @@ export default function List() {
 
   const [pageIdx, setPageIdx] = useState(0)
 
-  //TODO
-  //Calc page count
-  const pageCount = 3
-
-  // TODO
-  // use history
-  const { items, isLoading, error } = useList(
+  const { result, isLoading, error } = useList(
     `?${location.search.replace("?", "")}&from=${
       pageIdx * MAX_ITEMS
     }&size=${MAX_ITEMS}`
   )
+
+  const pageCount = useMemo(() => {
+    return Math.ceil(result.total / MAX_ITEMS) || 0
+  }, [result.total])
+
+  // TODO
+  // use history
+
+  const items = useMemo(() => {
+    return result.items || []
+  }, [result.items])
+
   const searchQuery = useMemo(() => {
     return new URLSearchParams(location.search).get("q")
   }, [location.search])
