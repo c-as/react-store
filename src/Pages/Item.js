@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { withRouter } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
@@ -73,8 +73,10 @@ const Error = styled(ColorBox)`
   width: fit-content;
 `
 
-function Item(props) {
-  const { item, isLoading, error } = useItem(props.match.params.id)
+export default function Item() {
+  const params = useParams()
+
+  const { item, isLoading, error } = useItem(params.id)
 
   const [quantity, setQuantity] = useState(0)
 
@@ -136,5 +138,3 @@ function Item(props) {
     </Styled>
   )
 }
-
-export default withRouter(Item)

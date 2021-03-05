@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { withRouter } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
@@ -61,7 +61,9 @@ const ClearButton = styled.button`
   }
 `
 
-function SearchBar({ onSearch, location }) {
+export default function SearchBar({ onSearch }) {
+  const location = useLocation()
+
   const [query, setQuery] = useState(() => {
     return new URLSearchParams(location.search).get("q") || ""
   })
@@ -105,5 +107,3 @@ function SearchBar({ onSearch, location }) {
 SearchBar.propTypes = {
   onSearch: PropTypes.func,
 }
-
-export default withRouter(SearchBar)
