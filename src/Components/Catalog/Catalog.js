@@ -19,7 +19,7 @@ const StyledColorBox = styled(ColorBox)`
 `
 
 export default function Catalog({
-  items,
+  items = [],
   message = "Nothing to show",
   isLoading = false,
 }) {

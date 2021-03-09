@@ -57,9 +57,6 @@ export default function List() {
     return Math.ceil(result.total / MAX_ITEMS) || 0
   }, [result.total])
 
-  const items = useMemo(() => {
-    return result.items || []
-  }, [result.items])
 
   const searchQuery = useMemo(() => {
     return new URLSearchParams(location.search).get("q")
@@ -93,13 +90,13 @@ export default function List() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [items])
+  }, [result.items])
 
   return (
     <div>
       <div>
         <SearchBar onSearch={onSearch} />
-        <Catalog items={items} isLoading={isLoading} message={message} />
+        <Catalog items={result.items} isLoading={isLoading} message={message} />
         <PageSelector>
           {pageIdx !== 0 && (
             <>
