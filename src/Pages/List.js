@@ -100,7 +100,7 @@ export default function List() {
 
           <span>{`${pageIdx + 1}/${pageCount}`}</span>
 
-          {pageIdx !== pageCount - 1 && (
+          {pageCount > 1 && pageIdx !== pageCount - 1 && (
             <>
               <button onClick={incrementPage}>{">"}</button>
 
