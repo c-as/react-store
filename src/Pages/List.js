@@ -37,9 +37,7 @@ export default function List() {
 
   const MAX_ITEMS = 10
 
-  const pageIdx = useMemo(() => {
-    return Number(new URLSearchParams(location.search).get("page")) || 0
-  }, [location.search])
+  const pageIdx = Number(new URLSearchParams(location.search).get("page")) || 0
 
   function setPageIdx(value) {
     const queries = new URLSearchParams(location.search)
@@ -53,14 +51,9 @@ export default function List() {
     }&size=${MAX_ITEMS}`
   )
 
-  const pageCount = useMemo(() => {
-    return Math.ceil(result.total / MAX_ITEMS) || 0
-  }, [result.total])
+  const pageCount = Math.ceil(result.total / MAX_ITEMS) || 0
 
-
-  const searchQuery = useMemo(() => {
-    return new URLSearchParams(location.search).get("q")
-  }, [location.search])
+  const searchQuery = new URLSearchParams(location.search).get("q")
 
   const message = useMemo(() => {
     if (error) {
