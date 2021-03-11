@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 import useList from "../Hooks/useList"
 
-import Catalog from "../Components/Catalog/Catalog"
+import Catalog from "../Components/Catalog"
 import SearchBar from "../Components/SearchBar"
 
 const PageSelector = styled.div`
