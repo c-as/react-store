@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import logo from "../Assets/logo.svg"
 import styled from "styled-components"
+import { Context as CartContext } from "../Context/Cart"
 
 const Styled = styled.header`
   width: 100%;
@@ -39,7 +40,9 @@ const Styled = styled.header`
   }
 `
 
-export default function header() {
+export default function Header() {
+  const { items } = useContext(CartContext)
+
   return (
     <Styled>
       <img src={logo} alt="" />
@@ -58,7 +61,7 @@ export default function header() {
         >
           Deals
         </NavLink>
-        <NavLink to="/cart">Cart</NavLink>
+        <NavLink to="/cart">Cart {Object.keys(items).length}</NavLink>
       </nav>
     </Styled>
   )
