@@ -26,17 +26,7 @@ export default function Catalog({
   return (
     <Styled>
       {items.length > 0
-        ? items.map((item) => (
-            <Item
-              id={item._id}
-              name={item.name}
-              price={item.price}
-              rating={item.avgRating}
-              isOnSale={item.isOnSale}
-              image={item.imageUrl}
-              key={item._id}
-            />
-          ))
+        ? items.map((item) => <Item item={item} />)
         : !isLoading && <StyledColorBox>{message}</StyledColorBox>}
     </Styled>
   )

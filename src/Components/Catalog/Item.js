@@ -59,22 +59,23 @@ const StyledSale = styled(Sale)`
   font-size: 0.9rem;
 `
 
-export default function Item({ image, name, id, rating, price, isOnSale }) {
+export default function Item({ item }) {
+  console.log(item)
   return (
     <Styled>
       <ImgContainer>
         <Helper />
-        <img src={image} alt={name} />
+        <img src={item.imageUrl} alt={item.name} />
       </ImgContainer>
-      <Link to={`/item/${id}`}>
-        <header>{name}</header>
+      <Link to={`/item/${item._id}`}>
+        <header>{item.name}</header>
       </Link>
       <Info>
-        <Rating score={rating} />
-        <h3> ${price} </h3>
-        {isOnSale && <StyledSale>On Sale</StyledSale>}
+        <Rating score={item.avgRating} />
+        <h3> ${item.price} </h3>
+        {item.isOnSale && <StyledSale>On Sale</StyledSale>}
       </Info>
-      <Link to={`/item/${id}`}>
+      <Link to={`/item/${item._id}`}>
         <Button>View Item</Button>
       </Link>
     </Styled>
@@ -82,10 +83,5 @@ export default function Item({ image, name, id, rating, price, isOnSale }) {
 }
 
 Item.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  price: PropTypes.number,
-  rating: PropTypes.number,
-  isOnSale: PropTypes.bool,
-  image: PropTypes.string,
+  item: PropTypes.object,
 }
