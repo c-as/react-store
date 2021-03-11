@@ -60,7 +60,6 @@ const StyledSale = styled(Sale)`
 `
 
 export default function Item({ item }) {
-  console.log(item)
   return (
     <Styled>
       <ImgContainer>
