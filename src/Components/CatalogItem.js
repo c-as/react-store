@@ -1,10 +1,10 @@
 import React from "react"
-import Rating from "../Rating"
+import Rating from "./Rating"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import Sale from "../Sale"
-import ColorBox from "../ColorBox"
+import Sale from "./Sale"
+import ColorBox from "./ColorBox"
 
 const Styled = styled.div`
   margin: 0.5rem;
