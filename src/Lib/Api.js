@@ -13,7 +13,7 @@ async function _fetch(query) {
 
 async function fetchList(params) {
   try {
-    return _fetch(`${url}/item/list/${params}`)
+    return await _fetch(`${url}/item/list/${params}`)
   } catch (error) {
     throw error
   }
@@ -21,7 +21,7 @@ async function fetchList(params) {
 
 async function fetchItem(id) {
   try {
-    return _fetch(`${url}/item/${id}`)
+    return await _fetch(`${url}/item/${id}`)
   } catch (error) {
     throw error
   }
