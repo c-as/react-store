@@ -12,7 +12,9 @@ export function Provider(props) {
     if (amount === 0 || newAmount > item.stockCount) {
       throw Error("Insufficient Stock")
     }
-    setItems({ ...items, [id]: newAmount })
+    setItems((items) => {
+      return { ...items, [id]: newAmount }
+    })
   }
 
   return (
