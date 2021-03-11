@@ -6,7 +6,7 @@ async function _fetch(query) {
     const json = await response.json()
     return json
   } catch (error) {
-    console.error(error)
+    console.log(error)
     throw error
   }
 }
