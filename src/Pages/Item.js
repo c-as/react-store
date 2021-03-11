@@ -84,7 +84,7 @@ export default function Item() {
   const { addItem } = useContext(CartContext)
 
   useEffect(() => {
-    if (item.stockCount > 0) {
+    if (item && item.stockCount > 0) {
       setQuantity(1)
     }
   }, [item])
