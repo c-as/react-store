@@ -59,7 +59,7 @@ const StyledSale = styled(Sale)`
   font-size: 0.9rem;
 `
 
-export default function Item({ item }) {
+export default function CatalogItem({ item }) {
   return (
     <Styled>
       <ImgContainer>
@@ -81,6 +81,6 @@ export default function Item({ item }) {
   )
 }
 
-Item.propTypes = {
+CatalogItem.propTypes = {
   item: PropTypes.object,
 }
