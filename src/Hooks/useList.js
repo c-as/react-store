@@ -1,8 +1,8 @@
 import useFetch from "./useFetch"
-import Api from "../Lib/Api"
+import { url } from "../Lib/Api"
 
 export default function useItem(query) {
-  const result = useFetch(`${Api}/item/list/${query}`)
+  const result = useFetch(`${url}/item/list/${query}`)
 
   return {
     result: result.json ? result.json : {},
