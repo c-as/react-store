@@ -105,7 +105,7 @@ export default function Item() {
 
   return (
     <Styled>
-      {item ? (
+      {item.length > 0 ? (
         <div>
           <ProductImg src={item.imageUrl} alt={item.name} />
           <Info>
