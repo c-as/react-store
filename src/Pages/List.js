@@ -5,6 +5,7 @@ import styled from "styled-components"
 import useList from "../Hooks/useList"
 
 import Catalog from "../Components/Catalog"
+import CatalogItem from "../Components/CatalogItem"
 import SearchBar from "../Components/SearchBar"
 
 const PageSelector = styled.div`
@@ -89,7 +90,12 @@ export default function List() {
     <div>
       <div>
         <SearchBar onSearch={onSearch} />
-        <Catalog items={result.items} isLoading={isLoading} message={message} />
+        <Catalog
+          items={result.items}
+          ItemElement={CatalogItem}
+          isLoading={isLoading}
+          message={message}
+        />
         <PageSelector>
           {pageIdx !== 0 && (
             <>

@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Item from "./CatalogItem"
 import styled from "styled-components"
 import ColorBox from "./ColorBox"
 
@@ -20,13 +19,14 @@ const StyledColorBox = styled(ColorBox)`
 
 export default function Catalog({
   items = [],
+  ItemElement,
   message = "Nothing to show",
   isLoading = false,
 }) {
   return (
     <Styled>
       {items.length > 0
-        ? items.map((item) => <Item item={item} />)
+        ? items.map((item) => <ItemElement item={item} />)
         : !isLoading && <StyledColorBox>{message}</StyledColorBox>}
     </Styled>
   )
@@ -34,6 +34,7 @@ export default function Catalog({
 
 Catalog.propTypes = {
   items: PropTypes.array,
+  ItemElement: PropTypes.func,
   message: PropTypes.string,
   isLoading: PropTypes.bool,
 }
