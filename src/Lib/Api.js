@@ -27,4 +27,4 @@ async function fetchItem(id) {
   }
 }
 
-export { fetchList }
+export { fetchList, fetchItem }
