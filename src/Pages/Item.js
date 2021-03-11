@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
 import ColorBox from "../Components/ColorBox"
 import useItem from "../Hooks/useItem"
+import { Context as CartContext } from "../Context/Cart"
 
 const Styled = styled.div`
   @media (orientation: landscape) {
@@ -80,6 +81,8 @@ export default function Item() {
 
   const [quantity, setQuantity] = useState(0)
 
+  const { addItem } = useContext(CartContext)
+
   useEffect(() => {
     if (item.stockCount > 0) {
       setQuantity(1)
@@ -92,14 +95,11 @@ export default function Item() {
   }
 
   function addToCart() {
-    if (quantity === 0) {
-      alert("Out of stock!")
-    } else if (quantity > item.stockCount) {
-      alert("Insufficient stock!")
-    } else if (typeof quantity == "number") {
-      alert(`${quantity} added to cart.`)
-    } else {
-      alert("Incorrect input")
+    try {
+      addItem(item, quantity)
+      alert(`Added ${quantity} to cart`)
+    } catch (error) {
+      alert(error.toString())
     }
   }
 
