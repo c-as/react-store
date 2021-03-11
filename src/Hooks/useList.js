@@ -1,12 +1,35 @@
-import useFetch from "./useFetch"
-import { url } from "../Lib/Api"
+import { useEffect, useState } from "react"
+import { fetchList } from "../Lib/Api"
 
 export default function useItem(query) {
-  const result = useFetch(`${url}/item/list/${query}`)
+  const [result, setResult] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState()
+
+  useEffect(
+    function () {
+      setIsLoading(true)
+      setError()
+      async function getList() {
+        try {
+          setIsLoading(true)
+          const result = await fetchList(query)
+          setResult(result)
+        } catch (error) {
+          setError(error)
+        } finally {
+          setIsLoading(false)
+        }
+      }
+
+      getList()
+    },
+    [query]
+  )
 
   return {
-    result: result.json ? result.json : {},
-    isLoading: result.isLoading,
-    error: result.error,
+    result,
+    isLoading,
+    error,
   }
 }
