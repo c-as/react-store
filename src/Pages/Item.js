@@ -81,7 +81,7 @@ export default function Item() {
 
   const [quantity, setQuantity] = useState(0)
 
-  const { updateItem } = useContext(CartContext)
+  const { updateItem, items: cart } = useContext(CartContext)
 
   useEffect(() => {
     if (item && item.stockCount > 0) {
@@ -129,7 +129,11 @@ export default function Item() {
             {(item.stockCount < 1 || quantity > item.stockCount) && (
               <StockWarning>Insufficient stock!</StockWarning>
             )}
-            <CartWarning>1 of this item is currently in your cart.</CartWarning>
+            {cart[item._id] && (
+              <CartWarning>
+                {cart[item._id]} of this item is currently in your cart.
+              </CartWarning>
+            )}
           </Info>
         </div>
       ) : (
