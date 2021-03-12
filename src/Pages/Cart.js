@@ -88,8 +88,11 @@ export default function Cart() {
         isLoading={isLoading}
         message={message}
       />
-      {Object.values(items).length > 0 && <Button>Checkout</Button>}
-      <div>Total: ${price}</div>
+      {Object.values(items).length > 0 && (
+        <>
+          <Button>Checkout</Button> <div>Total: ${price}</div>
+        </>
+      )}
     </div>
   )
 }
