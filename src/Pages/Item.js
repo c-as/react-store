@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
-import { ColorBox } from "../Components/Styles"
+import { ColorBox, Button } from "../Components/Styles"
 import useItem from "../Hooks/useItem"
 import { Context as CartContext } from "../Context/Cart"
 
@@ -49,15 +49,8 @@ const Info = styled.div`
   }
 `
 
-const Button = styled.div`
-  text-align: center;
+const StyledButton = styled(Button)`
   width: 6rem;
-  color: white;
-  background-color: orange;
-  padding: 0.4rem;
-  border-radius: 0.3rem;
-  text-decoration: none;
-  cursor: pointer;
 `
 
 const StockWarning = styled(ColorBox)`
@@ -125,7 +118,9 @@ export default function Item() {
               />
               <span>In stock: {item.stockCount}</span>
             </p>
-            <Button onClick={(event) => addToCart(event)}>Add to cart</Button>
+            <StyledButton onClick={(event) => addToCart(event)}>
+              Add to cart
+            </StyledButton>
             {(item.stockCount < 1 || quantity > item.stockCount) && (
               <StockWarning>Insufficient stock!</StockWarning>
             )}

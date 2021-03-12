@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Sale from "./Sale"
-import { ColorBox } from "./Styles"
+import { Button } from "./Styles"
 
 const Styled = styled.div`
   margin: 0.5rem;
@@ -45,13 +45,10 @@ const Info = styled.div`
   }
 `
 
-const Button = styled(ColorBox)`
+const StyledButton = styled(Button)`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  width: max-content;
   margin: 2rem auto 0rem;
-  background-color: orange;
-  color: white;
 `
 
 const StyledSale = styled(Sale)`
@@ -75,7 +72,7 @@ export default function CatalogItem({ item }) {
         {item.isOnSale && <StyledSale>On Sale</StyledSale>}
       </Info>
       <Link to={`/item/${item._id}`}>
-        <Button>View Item</Button>
+        <StyledButton>View Item</StyledButton>
       </Link>
     </Styled>
   )

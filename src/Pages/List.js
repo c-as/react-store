@@ -7,6 +7,7 @@ import useList from "../Hooks/useList"
 import Catalog from "../Components/Catalog"
 import CatalogItem from "../Components/CatalogItem"
 import SearchBar from "../Components/SearchBar"
+import { Button } from "../Components/Styles"
 
 const PageSelector = styled.div`
   width: max-content;
@@ -21,15 +22,11 @@ const PageSelector = styled.div`
       margin-right: 0rem;
     }
   }
-  button {
-    border: 1px solid orange;
-    padding: 0.4rem 1.5rem;
-    border-radius: 0.3rem;
-    background-color: orange;
-    color: white;
-    font: inherit;
-    cursor: pointer;
-  }
+`
+
+const StyledButton = styled(Button)`
+  display: inline;
+  padding: 0.4rem 1.5rem;
 `
 
 export default function List() {
@@ -99,8 +96,8 @@ export default function List() {
         <PageSelector>
           {pageIdx !== 0 && (
             <>
-              <button onClick={() => setPageIdx(0)}>First</button>
-              <button onClick={decrementPage}>{"<"}</button>
+              <StyledButton onClick={() => setPageIdx(0)}>First</StyledButton>
+              <StyledButton onClick={decrementPage}>{"<"}</StyledButton>
             </>
           )}
 
@@ -108,9 +105,11 @@ export default function List() {
 
           {pageCount > 1 && pageIdx !== pageCount - 1 && (
             <>
-              <button onClick={incrementPage}>{">"}</button>
+              <StyledButton onClick={incrementPage}>{">"}</StyledButton>
 
-              <button onClick={() => setPageIdx(pageCount - 1)}>Last</button>
+              <StyledButton onClick={() => setPageIdx(pageCount - 1)}>
+                Last
+              </StyledButton>
             </>
           )}
         </PageSelector>

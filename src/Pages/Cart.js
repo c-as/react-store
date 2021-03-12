@@ -5,7 +5,7 @@ import Catalog from "../Components/Catalog"
 import CartItem from "../Components/CartItem"
 import { fetchItem } from "../Lib/Api"
 import styled from "styled-components"
-import { ColorBox } from "../Components/Styles"
+import { Button } from "../Components/Styles"
 
 const Styled = styled.div`
   width: 95rem;
@@ -22,14 +22,10 @@ const CartInfo = styled.div`
   }
 `
 
-const Button = styled(ColorBox)`
+const StyledButton = styled(Button)`
   margin: 0rem auto 0rem 0rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  width: max-content;
-  background-color: orange;
-  color: white;
-  cursor: pointer;
 `
 
 export default function Cart() {
@@ -111,14 +107,14 @@ export default function Cart() {
       <CartInfo>
         {Object.values(items).length > 0 && (
           <>
-            <Button
+            <StyledButton
               onClick={() => {
                 clearCart()
                 history.push("/checkout")
               }}
             >
               Checkout
-            </Button>
+            </StyledButton>
             <span>
               {" "}
               {itemCount} Items, Total: ${price}

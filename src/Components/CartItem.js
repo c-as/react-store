@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { ColorBox } from "./Styles"
+import { Button } from "./Styles"
 import { Context as CartContext } from "../Context/Cart"
 
 const Styled = styled.div`
@@ -57,12 +57,8 @@ const Menu = styled.div`
   }
 `
 
-const Button = styled(ColorBox)`
+const StyledButton = styled(Button)`
   display: inline;
-  width: max-content;
-  background-color: orange;
-  color: white;
-  cursor: pointer;
 `
 
 export default function CartItem({ item }) {
@@ -92,13 +88,13 @@ export default function CartItem({ item }) {
           }}
           step="1"
         />
-        <Button
+        <StyledButton
           onClick={() => {
             removeItem(item)
           }}
         >
           remove
-        </Button>
+        </StyledButton>
         <span>In stock: {item.stockCount}</span>
       </Menu>
     </Styled>

@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 import PropTypes from "prop-types"
+import { Button } from "./Styles"
 
 const Styled = styled.div`
   width: 100%;
@@ -33,18 +34,11 @@ const Container = styled.form`
   }
 `
 
-const SearchButton = styled.button`
-  border: 1px solid orange;
+const SearchButton = styled(Button)`
+  margin: 0;
   padding: 0.4rem 1.5rem;
   border-left: none;
   border-radius: 0rem 0.3rem 0.3rem 0rem;
-  background-color: orange;
-  color: white;
-  font: inherit;
-  cursor: pointer;
-  :focus {
-    outline: none;
-  }
 `
 
 const ClearButton = styled.button`

@@ -12,6 +12,7 @@ export const Button = styled(ColorBox)`
   width: max-content;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
   a {
     color: inherit;
     font: inherit;
