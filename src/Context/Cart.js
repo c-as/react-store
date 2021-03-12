@@ -6,10 +6,8 @@ export function Provider(props) {
   const [items, setItems] = useState({})
 
   function setItem(item, amount) {
-    if (amount === 0) {
-      removeItem(item)
-    }
     const id = item._id
+
     if (amount > item.stockCount || item.stockCount === 0) {
       throw Error("Insufficient Stock")
     }
@@ -21,15 +19,16 @@ export function Provider(props) {
   function updateItem(item, amount) {
     const id = item._id
     const newAmount = (items[id] || 0) + amount
-    setItem(item, newAmount)
+
+    try {
+      setItem(item, newAmount)
+    } catch (error) {
+      throw error
+    }
   }
 
   function removeItem(item) {
-    const id = item._id
-    setItems((items) => {
-      delete items[id]
-      return items
-    })
+    setItem(item, 0)
   }
 
   return (
