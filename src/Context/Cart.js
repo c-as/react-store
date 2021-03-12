@@ -6,6 +6,9 @@ export function Provider(props) {
   const [items, setItems] = useState({})
 
   function setItem(item, amount) {
+    if (amount === 0) {
+      removeItem(item)
+    }
     const id = item._id
     if (amount > item.stockCount || item.stockCount === 0) {
       throw Error("Insufficient Stock")
