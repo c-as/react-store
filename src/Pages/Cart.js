@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useMemo } from "react"
+import { useHistory } from "react-router-dom"
 import { Context as CartContext } from "../Context/Cart"
 import Catalog from "../Components/Catalog"
 import CartItem from "../Components/CartItem"
@@ -17,7 +18,9 @@ const Button = styled(ColorBox)`
 `
 
 export default function Cart() {
-  const { items: cart, setItem, ItemCount } = useContext(CartContext)
+  const history = useHistory()
+
+  const { items: cart, setItem, clearCart, ItemCount } = useContext(CartContext)
 
   const [items, setItems] = useState({})
   const [isLoading, setIsLoading] = useState(true)
@@ -93,7 +96,15 @@ export default function Cart() {
       {itemCount} Items
       {Object.values(items).length > 0 && (
         <>
-          <Button>Checkout</Button> <div>Total: ${price}</div>
+          <Button
+            onClick={() => {
+              clearCart()
+              history.push("/checkout")
+            }}
+          >
+            Checkout
+          </Button>{" "}
+          <div>Total: ${price}</div>
         </>
       )}
     </div>
