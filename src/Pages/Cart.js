@@ -7,11 +7,26 @@ import { fetchItem } from "../Lib/Api"
 import styled from "styled-components"
 import { ColorBox } from "../Components/Styles"
 
+const Styled = styled.div`
+  width: 95rem;
+  max-width: 100%;
+  margin: 0rem auto;
+`
+
+const CartInfo = styled.div`
+  display: flex;
+  margin: 0rem 0.5rem;
+  span {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+`
+
 const Button = styled(ColorBox)`
+  margin: 0rem auto 0rem 0rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   width: max-content;
-  margin: 2rem auto 0rem;
   background-color: orange;
   color: white;
   cursor: pointer;
@@ -86,27 +101,31 @@ export default function Cart() {
   const itemCount = ItemCount()
 
   return (
-    <div>
+    <Styled>
       <Catalog
         items={Object.values(items)}
         ItemElement={CartItem}
         isLoading={isLoading}
         message={message}
       />
-      {itemCount} Items
-      {Object.values(items).length > 0 && (
-        <>
-          <Button
-            onClick={() => {
-              clearCart()
-              history.push("/checkout")
-            }}
-          >
-            Checkout
-          </Button>{" "}
-          <div>Total: ${price}</div>
-        </>
-      )}
-    </div>
+      <CartInfo>
+        {Object.values(items).length > 0 && (
+          <>
+            <Button
+              onClick={() => {
+                clearCart()
+                history.push("/checkout")
+              }}
+            >
+              Checkout
+            </Button>
+            <span>
+              {" "}
+              {itemCount} Items, Total: ${price}
+            </span>
+          </>
+        )}
+      </CartInfo>
+    </Styled>
   )
 }
