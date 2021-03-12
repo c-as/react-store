@@ -17,7 +17,7 @@ const Button = styled(ColorBox)`
 `
 
 export default function Cart() {
-  const { items: cart, setItem } = useContext(CartContext)
+  const { items: cart, setItem, ItemCount } = useContext(CartContext)
 
   const [items, setItems] = useState({})
   const [isLoading, setIsLoading] = useState(true)
@@ -80,6 +80,8 @@ export default function Cart() {
     [items]
   )
 
+  const itemCount = ItemCount()
+
   return (
     <div>
       <Catalog
@@ -88,6 +90,7 @@ export default function Cart() {
         isLoading={isLoading}
         message={message}
       />
+      {itemCount} Items
       {Object.values(items).length > 0 && (
         <>
           <Button>Checkout</Button> <div>Total: ${price}</div>
