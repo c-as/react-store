@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Sale from "./Sale"
-import ColorBox from "./ColorBox"
+import { ColorBox } from "./Styles"
 
 const Styled = styled.div`
   margin: 0.5rem;

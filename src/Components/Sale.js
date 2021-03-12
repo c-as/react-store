@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import ColorBox from "./ColorBox"
+import { ColorBox } from "./Styles"
 
 const Sale = styled(ColorBox)`
   width: fit-content;

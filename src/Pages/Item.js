@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
-import ColorBox from "../Components/ColorBox"
+import { ColorBox } from "../Components/Styles"
 import useItem from "../Hooks/useItem"
 import { Context as CartContext } from "../Context/Cart"
 

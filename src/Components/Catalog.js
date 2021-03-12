@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import ColorBox from "./ColorBox"
+import { ColorBox } from "./Styles"
 
 const Styled = styled.div`
   width: 95rem;
