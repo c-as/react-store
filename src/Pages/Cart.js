@@ -89,7 +89,8 @@ export default function Cart() {
       Object.values(items).forEach((item) => {
         price += item.price
       })
-      return price
+
+      return Math.round(price * 100) / 100
     },
     [items]
   )
