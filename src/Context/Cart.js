@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useMemo } from "react"
 
 export const Context = createContext()
 
@@ -31,8 +31,23 @@ export function Provider(props) {
     setItem(item, 0)
   }
 
+  function ItemCount() {
+    return useMemo(
+      function () {
+        let count = 0
+        for (const id in items) {
+          count += items[id]
+        }
+        return count
+      },
+      [items]
+    )
+  }
+
   return (
-    <Context.Provider value={{ items, setItem, updateItem, removeItem }}>
+    <Context.Provider
+      value={{ items, setItem, updateItem, removeItem, ItemCount }}
+    >
       {props.children}
     </Context.Provider>
   )

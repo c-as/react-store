@@ -41,7 +41,9 @@ const Styled = styled.header`
 `
 
 export default function Header() {
-  const { items } = useContext(CartContext)
+  const { ItemCount } = useContext(CartContext)
+
+  const cartSize = ItemCount()
 
   return (
     <Styled>
@@ -61,7 +63,7 @@ export default function Header() {
         >
           Deals
         </NavLink>
-        <NavLink to="/cart">Cart {Object.keys(items).length}</NavLink>
+        <NavLink to="/cart">Cart {cartSize}</NavLink>
       </nav>
     </Styled>
   )
