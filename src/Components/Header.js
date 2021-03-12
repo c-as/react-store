@@ -63,7 +63,7 @@ export default function Header() {
         >
           Deals
         </NavLink>
-        <NavLink to="/cart">Cart {cartSize}</NavLink>
+        <NavLink to="/cart">Cart {cartSize > 0 && cartSize}</NavLink>
       </nav>
     </Styled>
   )
