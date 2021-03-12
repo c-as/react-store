@@ -31,6 +31,12 @@ export function Provider(props) {
     setItem(item, 0)
   }
 
+  function clearCart() {
+    for (const id in items) {
+      removeItem({ _id: id })
+    }
+  }
+
   function ItemCount() {
     return useMemo(
       function () {
@@ -46,7 +52,7 @@ export function Provider(props) {
 
   return (
     <Context.Provider
-      value={{ items, setItem, updateItem, removeItem, ItemCount }}
+      value={{ items, setItem, updateItem, removeItem, clearCart, ItemCount }}
     >
       {props.children}
     </Context.Provider>
