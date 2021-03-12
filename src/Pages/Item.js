@@ -81,7 +81,7 @@ export default function Item() {
 
   const [quantity, setQuantity] = useState(0)
 
-  const { addItem } = useContext(CartContext)
+  const { updateItem } = useContext(CartContext)
 
   useEffect(() => {
     if (item && item.stockCount > 0) {
@@ -96,7 +96,7 @@ export default function Item() {
 
   function addToCart() {
     try {
-      addItem(item, quantity)
+      updateItem(item, quantity)
       alert(`Added ${quantity} to cart`)
     } catch (error) {
       alert(error.toString())
