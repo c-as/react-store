@@ -5,7 +5,7 @@ export const Context = createContext()
 export function Provider(props) {
   const [items, setItems] = useState({})
 
-  function addItem(item, amount = 1) {
+  function updateItem(item, amount) {
     const id = item._id
     const newAmount = (items[id] || 0) + amount
 
@@ -18,7 +18,7 @@ export function Provider(props) {
   }
 
   return (
-    <Context.Provider value={{ items, setItems, addItem }}>
+    <Context.Provider value={{ items, setItems, updateItem }}>
       {props.children}
     </Context.Provider>
   )
