@@ -41,18 +41,14 @@ const SearchButton = styled(Button)`
   border-radius: 0rem 0.3rem 0.3rem 0rem;
 `
 
-const ClearButton = styled.button`
+const ClearButton = styled.div`
+  display: inline-block;
   border: 1px solid lightgrey;
-  padding: 0rem 1rem;
   border-left: none;
   border-right: none;
-  background-color: white;
-  font-weight: 1000;
-  font: inherit;
   cursor: pointer;
-  :focus {
-    outline: none;
-  }
+  padding: 0rem 1rem;
+  padding-top: 0.3rem;
 `
 
 export default function SearchBar({ onSearch }) {
