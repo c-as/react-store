@@ -1,9 +1,10 @@
 import styled from "styled-components"
 
 export const ColorBox = styled.p`
-  padding: 0.4em;
+  padding: 0.4rem 1rem;
   background-color: lightgreen;
   border-radius: 0.3rem;
+  width: fit-content;
 `
 
 export const Button = styled(ColorBox)`
