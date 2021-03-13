@@ -37,12 +37,6 @@ export default function Cart() {
   const [isLoading, setIsLoading] = useState(true)
   const [message, setMessage] = useState("")
 
-  //DEBUG
-  useEffect(() => {
-    setItem({ _id: "5fbfff7d58aa65167efb52b5" }, 1)
-    setItem({ _id: "5fbfff7d58aa65167efb52af" }, 2)
-  }, [])
-
   useEffect(
     function () {
       async function getItems() {
