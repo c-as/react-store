@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 import PropTypes from "prop-types"
-import { Button } from "./Styles"
+import { Button, Input } from "./Styles"
 
 const Styled = styled.div`
   width: 100%;
@@ -16,22 +16,13 @@ const Container = styled.form`
   margin: 0rem auto;
   padding: 0.5rem 0rem 0rem;
   display: flex;
-  input {
-    min-width: 0;
-    flex-grow: 1;
-    font: inherit;
-    border-radius: 0.3rem 0rem 0rem 0.3rem;
-    padding: 0.4rem;
-    padding-left: 0.9rem;
-    box-sizing: border-box;
-    border: 1px solid lightgrey;
-    border-right: none;
-    :focus {
-      outline: none;
-      border-radius: 0.3rem;
-      border: 1px solid deepskyblue;
-    }
-  }
+`
+
+const StyledInput = styled(Input)`
+  min-width: 0;
+  flex-grow: 1;
+  border-radius: 0.3rem 0rem 0rem 0.3rem;
+  border-right: none;
 `
 
 const SearchButton = styled(Button)`
@@ -77,7 +68,7 @@ export default function SearchBar({ onSearch }) {
   return (
     <Styled>
       <Container action="#" onSubmit={Submit}>
-        <input
+        <StyledInput
           type="text"
           onChange={(event) => setQuery(event.target.value)}
           onKeyUp={onKeyUp}

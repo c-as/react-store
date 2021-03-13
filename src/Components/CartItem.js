@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { Button } from "./Styles"
+import { Button, Input } from "./Styles"
 import { Context as CartContext } from "../Context/Cart"
 
 const Styled = styled.div`
@@ -78,7 +78,7 @@ export default function CartItem({ item }) {
       </Title>
       <Menu>
         {"Quantity:  "}
-        <input
+        <Input
           type="number"
           min="0"
           max={item.stockCount}

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
-import { ColorBox, Button } from "../Components/Styles"
+import { ColorBox, Button, Input } from "../Components/Styles"
 import useItem from "../Hooks/useItem"
 import { Context as CartContext } from "../Context/Cart"
 
@@ -108,7 +108,7 @@ export default function Item() {
             <p>{item.description}</p>
             <h3>${item.price}</h3>
             <p>
-              <input
+              <Input
                 type="number"
                 min="1"
                 max={item.stockCount}
