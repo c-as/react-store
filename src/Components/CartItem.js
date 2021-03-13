@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
@@ -80,7 +80,7 @@ const StyledButton = styled(Button)`
 
 export default function CartItem({ item }) {
   const { items, removeItem, setItem } = useContext(CartContext)
-  const quantity = items[item._id]
+  const [quantity, setQuantity] = useState(items[item._id])
 
   return (
     <Styled>
@@ -101,7 +101,10 @@ export default function CartItem({ item }) {
           max={item.stockCount}
           value={quantity}
           onChange={(event) => {
-            setItem(item, Number(event.target.value))
+            setQuantity(Number(event.target.value))
+          }}
+          onBlur={() => {
+            setItem(item, quantity)
           }}
           step="1"
         />
