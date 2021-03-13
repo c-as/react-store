@@ -15,24 +15,37 @@ const Styled = styled.div`
     color: black;
     text-decoration: none;
   }
+  @media (orientation: portrait) {
+    padding-bottom: 0.5rem;
+  }
 `
 
 const Title = styled.div`
   font-size: 1.5rem;
-  display: flex;
   margin-bottom: 1rem;
   div {
     margin-left: auto;
     margin-right: 4rem;
     font-weight: bold;
   }
+  @media (orientation: landscape) {
+    display: flex;
+  }
 `
 
 const ImgContainer = styled.div`
-  float: left;
+  @media (orientation: landscape) {
+    float: left;
+    width: 15rem;
+    margin-right: 2rem;
+  }
+  @media (orientation: portrait) {
+    float: left;
+    width: 100%;
+    display: block;
+    margin-bottom: 2rem;
+  }
   height: 10rem;
-  width: 15rem;
-  margin-right: 2rem;
   text-align: center;
 
   img {
@@ -49,6 +62,10 @@ const Helper = styled.span`
 `
 
 const Menu = styled.div`
+  line-height: 3rem;
+  input {
+    height: 2.2rem;
+  }
   * {
     margin-right: 1rem;
     :last-child {
@@ -93,7 +110,7 @@ export default function CartItem({ item }) {
             removeItem(item)
           }}
         >
-          remove
+          Remove
         </StyledButton>
         <span>In stock: {item.stockCount}</span>
       </Menu>

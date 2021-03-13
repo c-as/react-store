@@ -10,7 +10,7 @@ import { Button } from "../Components/Styles"
 const Styled = styled.div`
   width: 95rem;
   max-width: 100%;
-  margin: 0rem auto;
+  margin: 0rem auto 0.5rem;
 `
 
 const CartInfo = styled.div`
