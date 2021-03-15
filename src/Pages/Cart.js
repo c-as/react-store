@@ -51,11 +51,13 @@ export default function Cart() {
 
             if (items[id]) {
               list[id] = items[id]
+              list[id].amount = cart[id]
               continue
             }
 
             const item = await fetchItem(id)
             list[id] = item
+            list[id].amount = cart[id]
           }
           setItems(list)
 
@@ -81,7 +83,7 @@ export default function Cart() {
 
       let price = 0
       Object.values(items).forEach((item) => {
-        price += item.price
+        price += item.price * item.amount
       })
 
       return Math.round(price * 100) / 100
