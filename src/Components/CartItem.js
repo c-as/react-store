@@ -104,7 +104,11 @@ export default function CartItem({ item }) {
             setQuantity(Number(event.target.value))
           }}
           onBlur={() => {
-            setItem(item, quantity)
+            try {
+              setItem(item, quantity)
+            } catch (error) {
+              alert(error.toString())
+            }
           }}
           step="1"
         />
