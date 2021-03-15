@@ -8,7 +8,7 @@ import styled from "styled-components"
 import { Button } from "../Components/Styles"
 
 const Styled = styled.div`
-  width: 95rem;
+  width: 70rem;
   max-width: 100%;
   margin: 0rem auto 0.5rem;
 `
