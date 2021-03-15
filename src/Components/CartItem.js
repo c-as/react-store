@@ -87,6 +87,7 @@ export default function CartItem({ item }) {
       setItem(item, quantity)
     } catch (error) {
       alert(error.toString())
+      setQuantity(item.stockCount)
     }
   }
 
