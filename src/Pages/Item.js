@@ -124,7 +124,7 @@ export default function Item() {
             {(item.stockCount < 1 || quantity > item.stockCount) && (
               <StockWarning>Insufficient stock!</StockWarning>
             )}
-            {cart[item._id] && (
+            {cart[item._id] > 0 && (
               <CartWarning>
                 {cart[item._id]} of this item is currently in your cart.
               </CartWarning>
