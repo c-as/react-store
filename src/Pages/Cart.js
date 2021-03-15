@@ -86,7 +86,7 @@ export default function Cart() {
         price += item.price * item.amount
       })
 
-      return Math.round(price * 100) / 100
+      return price.toFixed(2)
     },
     [items]
   )
