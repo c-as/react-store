@@ -82,6 +82,14 @@ export default function CartItem({ item }) {
   const { items, removeItem, setItem } = useContext(CartContext)
   const [quantity, setQuantity] = useState(items[item._id])
 
+  function setItemQuantity() {
+    try {
+      setItem(item, quantity)
+    } catch (error) {
+      alert(error.toString())
+    }
+  }
+
   return (
     <Styled>
       <ImgContainer>
@@ -103,13 +111,8 @@ export default function CartItem({ item }) {
           onChange={(event) => {
             setQuantity(Number(event.target.value))
           }}
-          onBlur={() => {
-            try {
-              setItem(item, quantity)
-            } catch (error) {
-              alert(error.toString())
-            }
-          }}
+          onBlur={setItemQuantity}
+          onClick={setItemQuantity}
           step="1"
         />
         <StyledButton
