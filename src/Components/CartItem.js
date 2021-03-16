@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { Button, Input } from "./Styles"
-import { Context as CartContext } from "../Context/Cart"
+import { Context as CartContext, actions } from "../State/Cart"
 
 const Styled = styled.div`
   margin: 0.5rem;
@@ -79,53 +79,56 @@ const StyledButton = styled(Button)`
 `
 
 export default function CartItem({ item }) {
-  const { items, removeItem, setItem } = useContext(CartContext)
-  const [quantity, setQuantity] = useState(items[item._id])
+  const { dispatch } = useContext(CartContext)
+  const [quantity, setQuantity] = useState(item.amount)
 
   function setItemQuantity() {
-    try {
-      setItem(item, quantity)
-    } catch (error) {
-      alert(error.toString())
-      setQuantity(item.stockCount)
+    if (quantity > item.stockCount) {
+      alert("Insufficient Stock")
+      setQuantity(item.amount)
+      return
     }
+
+    dispatch({ type: actions.set, id: item._id, amount: quantity })
   }
 
   return (
-    <Styled>
-      <ImgContainer>
-        <Helper />
-        <img src={item.imageUrl} alt={item.name} />
-      </ImgContainer>
-      <Title>
-        {" "}
-        <Link to={`/item/${item._id}`}>{item.name} </Link>{" "}
-        <div>${item.price}</div>
-      </Title>
-      <Menu>
-        {"Quantity:  "}
-        <Input
-          type="number"
-          min="0"
-          max={item.stockCount}
-          value={quantity}
-          onChange={(event) => {
-            setQuantity(Number(event.target.value))
-          }}
-          onBlur={setItemQuantity}
-          onClick={setItemQuantity}
-          step="1"
-        />
-        <StyledButton
-          onClick={() => {
-            removeItem(item)
-          }}
-        >
-          Remove
-        </StyledButton>
-        <span>In stock: {item.stockCount}</span>
-      </Menu>
-    </Styled>
+    item.amount > 0 && (
+      <Styled>
+        <ImgContainer>
+          <Helper />
+          <img src={item.imageUrl} alt={item.name} />
+        </ImgContainer>
+        <Title>
+          {" "}
+          <Link to={`/item/${item._id}`}>{item.name} </Link>{" "}
+          <div>${item.price}</div>
+        </Title>
+        <Menu>
+          {"Quantity:  "}
+          <Input
+            type="number"
+            min="0"
+            max={item.stockCount}
+            value={quantity}
+            onChange={(event) => {
+              setQuantity(Number(event.target.value))
+            }}
+            onBlur={setItemQuantity}
+            onClick={setItemQuantity}
+            step="1"
+          />
+          <StyledButton
+            onClick={() => {
+              dispatch({ type: actions.remove, id: item._id })
+            }}
+          >
+            Remove
+          </StyledButton>
+          <span>In stock: {item.stockCount}</span>
+        </Menu>
+      </Styled>
+    )
   )
 }
 

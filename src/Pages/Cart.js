@@ -1,9 +1,8 @@
-import React, { useContext, useState, useEffect, useMemo } from "react"
+import React, { useContext } from "react"
 import { useHistory } from "react-router-dom"
-import { Context as CartContext } from "../Context/Cart"
+import { Context as CartContext, actions } from "../State/Cart"
 import Catalog from "../Components/Catalog"
 import CartItem from "../Components/CartItem"
-import { fetchItem } from "../Lib/Api"
 import styled from "styled-components"
 import { Button } from "../Components/Styles"
 
@@ -31,82 +30,25 @@ const StyledButton = styled(Button)`
 export default function Cart() {
   const history = useHistory()
 
-  const { items: cart, setItem, clearCart, ItemCount } = useContext(CartContext)
-
-  const [items, setItems] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [message, setMessage] = useState("")
-
-  useEffect(
-    function () {
-      async function getItems() {
-        setIsLoading(true)
-        setMessage("")
-        try {
-          let list = {}
-          for (const id in cart) {
-            if (!cart[id] > 0) {
-              continue
-            }
-
-            if (items[id]) {
-              list[id] = items[id]
-              list[id].amount = cart[id]
-              continue
-            }
-
-            const item = await fetchItem(id)
-            list[id] = item
-            list[id].amount = cart[id]
-          }
-          setItems(list)
-
-          if (!Object.keys(list).length > 0) {
-            setMessage("Cart is empty")
-          }
-        } catch (error) {
-          setMessage(error.toString())
-        } finally {
-          setIsLoading(false)
-        }
-      }
-      getItems()
-    },
-    [cart]
+  const { items: cart, itemCount, totalPrice, dispatch } = useContext(
+    CartContext
   )
 
-  const price = useMemo(
-    function () {
-      if (!items) {
-        return 0
-      }
-
-      let price = 0
-      Object.values(items).forEach((item) => {
-        price += item.price * item.amount
-      })
-
-      return price.toFixed(2)
-    },
-    [items]
-  )
-
-  const itemCount = ItemCount()
+  const items = itemCount > 0 ? cart : []
 
   return (
     <Styled>
       <Catalog
         items={Object.values(items)}
         ItemElement={CartItem}
-        isLoading={isLoading}
-        message={message}
+        message={"Cart is empty"}
       />
       <CartInfo>
-        {Object.values(items).length > 0 && (
+        {itemCount > 0 && (
           <>
             <StyledButton
               onClick={() => {
-                clearCart()
+                dispatch({ type: actions.clear })
                 history.push("/checkout")
               }}
             >
@@ -114,7 +56,7 @@ export default function Cart() {
             </StyledButton>
             <span>
               {" "}
-              {itemCount} Items, Total: ${price}
+              {itemCount} Items, Total: ${totalPrice}
             </span>
           </>
         )}

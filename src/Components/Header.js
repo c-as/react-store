@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import logo from "../Assets/logo.svg"
 import styled from "styled-components"
-import { Context as CartContext } from "../Context/Cart"
+import { Context as CartContext } from "../State/Cart"
 
 const Styled = styled.header`
   width: 100%;
@@ -41,9 +41,7 @@ const Styled = styled.header`
 `
 
 export default function Header() {
-  const { ItemCount } = useContext(CartContext)
-
-  const cartSize = ItemCount()
+  const { itemCount: cartSize } = useContext(CartContext)
 
   return (
     <Styled>

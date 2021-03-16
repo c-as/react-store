@@ -5,7 +5,7 @@ import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
 import { ColorBox, Button, Input } from "../Components/Styles"
 import useItem from "../Hooks/useItem"
-import { Context as CartContext } from "../Context/Cart"
+import { Context as CartContext, actions } from "../State/Cart"
 
 const Styled = styled.div`
   @media (orientation: landscape) {
@@ -74,7 +74,7 @@ export default function Item() {
 
   const [quantity, setQuantity] = useState(0)
 
-  const { updateItem, items: cart } = useContext(CartContext)
+  const { items: cart, dispatch } = useContext(CartContext)
 
   useEffect(() => {
     if (item && item.stockCount > 0) {
@@ -87,13 +87,21 @@ export default function Item() {
     setQuantity(Number(value))
   }
 
+  const inCart = (cart[params.id] && cart[params.id].amount) || 0
+
   function addToCart() {
-    try {
-      updateItem(item, quantity)
-      alert(`Added ${quantity} to cart`)
-    } catch (error) {
-      alert(error.toString())
+    if (quantity > item.stockCount || item.stockCount === 0) {
+      alert("Insufficient Stock")
+      return
     }
+
+    dispatch({
+      type: actions.set,
+      id: item._id,
+      item: item,
+      amount: quantity + inCart,
+    })
+    alert(`Added ${quantity} to cart`)
   }
 
   return (
@@ -124,9 +132,9 @@ export default function Item() {
             {(item.stockCount < 1 || quantity > item.stockCount) && (
               <StockWarning>Insufficient stock!</StockWarning>
             )}
-            {cart[item._id] > 0 && (
+            {inCart > 0 && (
               <CartWarning>
-                {cart[item._id]} of this item is currently in your cart.
+                {inCart} of this item is currently in your cart.
               </CartWarning>
             )}
           </Info>

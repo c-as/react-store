@@ -5,7 +5,7 @@ import Item from "./Pages/Item"
 import List from "./Pages/List"
 import Cart from "./Pages/Cart"
 import { Button } from "./Components/Styles"
-import { Provider as CartProvider } from "./Context/Cart"
+import { Provider as CartProvider } from "./State/Cart"
 
 function App() {
   return (
