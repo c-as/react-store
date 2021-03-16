@@ -54,25 +54,16 @@ export function Provider(props) {
     items: {},
   })
 
-  const itemCount = useMemo(
+  const [itemCount, totalPrice] = useMemo(
     function () {
       let count = 0
-      for (const id in state.items) {
-        count += state.items[id].amount
-      }
-      return count
-    },
-    [state.items]
-  )
-
-  const totalPrice = useMemo(
-    function () {
       let price = 0
-      Object.values(state.items).forEach((item) => {
+      for (const id in state.items) {
+        let item = state.items[id]
+        count += item.amount
         price += item.price * item.amount
-      })
-
-      return price.toFixed(2)
+      }
+      return [count, price.toFixed(2)]
     },
     [state.items]
   )
