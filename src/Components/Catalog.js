@@ -1,8 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Item from "./Item"
 import styled from "styled-components"
-import ColorBox from "../ColorBox"
+import { ColorBox } from "./Styles"
 
 const Styled = styled.div`
   width: 95rem;
@@ -20,30 +19,22 @@ const StyledColorBox = styled(ColorBox)`
 
 export default function Catalog({
   items = [],
+  ItemElement,
   message = "Nothing to show",
   isLoading = false,
 }) {
   return (
     <Styled>
       {items.length > 0
-        ? items.map((item) => (
-            <Item
-              id={item._id}
-              name={item.name}
-              price={item.price}
-              rating={item.avgRating}
-              isOnSale={item.isOnSale}
-              image={item.imageUrl}
-              key={item._id}
-            />
-          ))
-        : !isLoading && <StyledColorBox>{message}</StyledColorBox>}
+        ? items.map((item) => <ItemElement item={item} key={item._id} />)
+        : !isLoading && message && <StyledColorBox>{message}</StyledColorBox>}
     </Styled>
   )
 }
 
 Catalog.propTypes = {
   items: PropTypes.array,
+  ItemElement: PropTypes.func,
   message: PropTypes.string,
   isLoading: PropTypes.bool,
 }

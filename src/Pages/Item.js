@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
-import ColorBox from "../Components/ColorBox"
+import { ColorBox, Button, Input } from "../Components/Styles"
 import useItem from "../Hooks/useItem"
+import { Context as CartContext, actions } from "../State/Cart"
 
 const Styled = styled.div`
   @media (orientation: landscape) {
@@ -48,15 +49,8 @@ const Info = styled.div`
   }
 `
 
-const Button = styled.div`
-  text-align: center;
+const StyledButton = styled(Button)`
   width: 6rem;
-  color: white;
-  background-color: orange;
-  padding: 0.4rem;
-  border-radius: 0.3rem;
-  text-decoration: none;
-  cursor: pointer;
 `
 
 const StockWarning = styled(ColorBox)`
@@ -80,8 +74,10 @@ export default function Item() {
 
   const [quantity, setQuantity] = useState(0)
 
+  const { items: cart, dispatch } = useContext(CartContext)
+
   useEffect(() => {
-    if (item.stockCount > 0) {
+    if (item && item.stockCount > 0) {
       setQuantity(1)
     }
   }, [item])
@@ -91,16 +87,21 @@ export default function Item() {
     setQuantity(Number(value))
   }
 
+  const inCart = (cart[params.id] && cart[params.id].amount) || 0
+
   function addToCart() {
-    if (quantity === 0) {
-      alert("Out of stock!")
-    } else if (quantity > item.stockCount) {
-      alert("Insufficient stock!")
-    } else if (typeof quantity == "number") {
-      alert(`${quantity} added to cart.`)
-    } else {
-      alert("Incorrect input")
+    if (quantity > item.stockCount || item.stockCount === 0) {
+      alert("Insufficient Stock")
+      return
     }
+
+    dispatch({
+      type: actions.set,
+      id: item._id,
+      item: item,
+      amount: quantity + inCart,
+    })
+    alert(`Added ${quantity} to cart`)
   }
 
   return (
@@ -115,7 +116,7 @@ export default function Item() {
             <p>{item.description}</p>
             <h3>${item.price}</h3>
             <p>
-              <input
+              <Input
                 type="number"
                 min="1"
                 max={item.stockCount}
@@ -125,11 +126,17 @@ export default function Item() {
               />
               <span>In stock: {item.stockCount}</span>
             </p>
-            <Button onClick={(event) => addToCart(event)}>Add to cart</Button>
+            <StyledButton onClick={(event) => addToCart(event)}>
+              Add to cart
+            </StyledButton>
             {(item.stockCount < 1 || quantity > item.stockCount) && (
               <StockWarning>Insufficient stock!</StockWarning>
             )}
-            <CartWarning>1 of this item is currently in your cart.</CartWarning>
+            {inCart > 0 && (
+              <CartWarning>
+                {inCart} of this item is currently in your cart.
+              </CartWarning>
+            )}
           </Info>
         </div>
       ) : (

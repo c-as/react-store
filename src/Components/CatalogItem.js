@@ -1,10 +1,10 @@
 import React from "react"
-import Rating from "../Rating"
+import Rating from "./Rating"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import Sale from "../Sale"
-import ColorBox from "../ColorBox"
+import Sale from "./Sale"
+import { Button } from "./Styles"
 
 const Styled = styled.div`
   margin: 0.5rem;
@@ -45,13 +45,10 @@ const Info = styled.div`
   }
 `
 
-const Button = styled(ColorBox)`
+const StyledButton = styled(Button)`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  width: max-content;
   margin: 2rem auto 0rem;
-  background-color: orange;
-  color: white;
 `
 
 const StyledSale = styled(Sale)`
@@ -59,33 +56,28 @@ const StyledSale = styled(Sale)`
   font-size: 0.9rem;
 `
 
-export default function Item({ image, name, id, rating, price, isOnSale }) {
+export default function CatalogItem({ item }) {
   return (
     <Styled>
       <ImgContainer>
         <Helper />
-        <img src={image} alt={name} />
+        <img src={item.imageUrl} alt={item.name} />
       </ImgContainer>
-      <Link to={`/item/${id}`}>
-        <header>{name}</header>
+      <Link to={`/item/${item._id}`}>
+        <header>{item.name}</header>
       </Link>
       <Info>
-        <Rating score={rating} />
-        <h3> ${price} </h3>
-        {isOnSale && <StyledSale>On Sale</StyledSale>}
+        <Rating score={item.avgRating} />
+        <h3> ${item.price} </h3>
+        {item.isOnSale && <StyledSale>On Sale</StyledSale>}
       </Info>
-      <Link to={`/item/${id}`}>
-        <Button>View Item</Button>
+      <Link to={`/item/${item._id}`}>
+        <StyledButton>View Item</StyledButton>
       </Link>
     </Styled>
   )
 }
 
-Item.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  price: PropTypes.number,
-  rating: PropTypes.number,
-  isOnSale: PropTypes.bool,
-  image: PropTypes.string,
+CatalogItem.propTypes = {
+  item: PropTypes.object,
 }
