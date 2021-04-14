@@ -36,6 +36,16 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <div
+        style={{
+          textAlign: "center",
+          width: "100%",
+          clear: "both",
+          padding: "1rem 0rem",
+        }}
+      >
+        <a href="https://github.com/casbrugman/super-store">Source code</a>
+      </div>
     </CartProvider>
   )
 }
