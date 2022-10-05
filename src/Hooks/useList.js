@@ -13,7 +13,14 @@ export default function useItem(query) {
       async function getList() {
         try {
           setIsLoading(true)
-          const result = await fetchList(query)
+          let result = await fetchList(query)
+
+          for (let i in result.items) {
+            if (result.items[i]._id === "5fbfff7d58aa65167efb52b1") {
+              result.items.splice(i, 1)
+            }
+          }
+
           setResult(result)
         } catch (error) {
           setError(error)
