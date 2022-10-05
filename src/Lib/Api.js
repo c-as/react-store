@@ -1,6 +1,6 @@
 export const url = "https://gp-super-store-api.herokuapp.com"
 
-async function _fetch(query) {
+async function fetchJson(query) {
   try {
     const response = await fetch(query)
     const json = await response.json()
@@ -13,7 +13,7 @@ async function _fetch(query) {
 
 async function fetchList(params) {
   try {
-    return await _fetch(`${url}/item/list/${params}`)
+    return await fetchJson(`${url}/item/list/${params}`)
   } catch (error) {
     throw error
   }
@@ -21,7 +21,7 @@ async function fetchList(params) {
 
 async function fetchItem(id) {
   try {
-    return await _fetch(`${url}/item/${id}`)
+    return await fetchJson(`${url}/item/${id}`)
   } catch (error) {
     throw error
   }
