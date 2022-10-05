@@ -4,6 +4,7 @@ import Header from "./Components/Header"
 import Item from "./Pages/Item"
 import List from "./Pages/List"
 import Cart from "./Pages/Cart"
+import Footer from "./Components/Footer"
 import { Button } from "./Components/Styles"
 import { Provider as CartProvider } from "./State/Cart"
 
@@ -36,16 +37,9 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <div
-        style={{
-          textAlign: "center",
-          width: "100%",
-          clear: "both",
-          padding: "1rem 0rem",
-        }}
-      >
+      <Footer>
         <a href="https://github.com/casbrugman/super-store">Source code</a>
-      </div>
+      </Footer>
     </CartProvider>
   )
 }
