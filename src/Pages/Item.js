@@ -94,7 +94,7 @@ export default function Item() {
   const inCart = (cart[params.id] && cart[params.id].amount) || 0
 
   function addToCart() {
-    if (quantity > item.stockCount || item.stockCount === 0) {
+    if (quantity + inCart > item.stockCount || item.stockCount === 0) {
       alert("Insufficient Stock")
       return
     }
