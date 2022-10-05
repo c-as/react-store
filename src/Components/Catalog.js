@@ -14,7 +14,7 @@ const Styled = styled.div`
 `
 
 const StyledColorBox = styled(ColorBox)`
-  background-color: moccasin;
+  background-color: lightgray;
 `
 
 export default function Catalog({
