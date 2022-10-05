@@ -61,10 +61,14 @@ const CartWarning = styled(ColorBox)`
   background-color: lightblue;
 `
 
-const Error = styled(ColorBox)`
-  background-color: lightpink;
+const Message = styled(ColorBox)`
+  background-color: lightgray;
   margin: 0rem auto;
   width: fit-content;
+`
+
+const Error = styled(Message)`
+  background-color: lightpink;
 `
 
 export default function Item() {
@@ -139,8 +143,10 @@ export default function Item() {
             )}
           </Info>
         </div>
+      ) : isLoading ? (
+        <Message>Fetching item..</Message>
       ) : (
-        !isLoading && <Error>{error.toString()}</Error>
+        <Error>{error.toString()}</Error>
       )}
     </Styled>
   )
