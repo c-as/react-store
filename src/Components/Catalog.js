@@ -21,13 +21,14 @@ export default function Catalog({
   items = [],
   ItemElement,
   message = "Nothing to show",
-  isLoading = false,
 }) {
   return (
     <Styled>
-      {items.length > 0
-        ? items.map((item) => <ItemElement item={item} key={item._id} />)
-        : !isLoading && message && <StyledColorBox>{message}</StyledColorBox>}
+      {items.length > 0 ? (
+        items.map((item) => <ItemElement item={item} key={item._id} />)
+      ) : (
+        <StyledColorBox>{message}</StyledColorBox>
+      )}
     </Styled>
   )
 }

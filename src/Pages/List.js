@@ -54,14 +54,18 @@ export default function List() {
   const searchQuery = new URLSearchParams(location.search).get("q")
 
   const message = useMemo(() => {
-    if (error) {
-      return error.toString()
-    } else if (searchQuery) {
-      return `No results for query ${searchQuery}`
+    if (isLoading) {
+      return "Fetching items.."
     } else {
-      return
+      if (error) {
+        return error.toString()
+      } else if (searchQuery) {
+        return `No results for query ${searchQuery}`
+      } else {
+        return
+      }
     }
-  }, [error, searchQuery])
+  }, [error, searchQuery, isLoading])
 
   function onSearch(query) {
     if (query.length > 0) {
@@ -90,7 +94,6 @@ export default function List() {
         <Catalog
           items={result.items}
           ItemElement={CatalogItem}
-          isLoading={isLoading}
           message={message}
         />
         <PageSelector>
