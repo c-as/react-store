@@ -60,7 +60,7 @@ export default function List() {
       if (error) {
         return error.toString()
       } else if (searchQuery) {
-        return `No results for query ${searchQuery}`
+        return `No results for query: '${searchQuery}'`
       } else {
         return
       }
