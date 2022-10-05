@@ -3,10 +3,12 @@ export const url = "https://gp-super-store-api.herokuapp.com"
 async function fetchJson(query) {
   try {
     const response = await fetch(query)
+    if (!(response.status >= 200 && response.status < 300)) {
+      throw Error(`Could not fetch '${query}', error code ${response.status}`)
+    }
     const json = await response.json()
     return json
   } catch (error) {
-    console.log(error)
     throw error
   }
 }
