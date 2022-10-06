@@ -50,7 +50,7 @@ export default function Header() {
         <Link to="/">Store</Link>
       </h2>
       <nav>
-        <NavLink exact to="/">
+        <NavLink end to="/">
           Home
         </NavLink>
         <NavLink

@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Context as CartContext, actions } from "../State/Cart"
 import Catalog from "../Components/Catalog"
 import CartItem from "../Components/CartItem"
@@ -28,11 +28,14 @@ const StyledButton = styled(Button)`
 `
 
 export default function Cart() {
-  const history = useHistory()
+  const navigate = useNavigate()
 
-  const { items: cart, itemCount, totalPrice, dispatch } = useContext(
-    CartContext
-  )
+  const {
+    items: cart,
+    itemCount,
+    totalPrice,
+    dispatch,
+  } = useContext(CartContext)
 
   const items = itemCount > 0 ? cart : []
 
@@ -49,7 +52,7 @@ export default function Cart() {
             <StyledButton
               onClick={() => {
                 dispatch({ type: actions.clear })
-                history.push("/checkout")
+                navigate("/checkout")
               }}
             >
               Checkout

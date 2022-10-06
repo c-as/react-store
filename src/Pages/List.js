@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect } from "react"
-import { useHistory, useLocation } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import styled from "styled-components"
 
 import useList from "../Hooks/useList"
@@ -30,7 +30,7 @@ const StyledButton = styled(Button)`
 `
 
 export default function List() {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
 
   const MAX_ITEMS = 10
@@ -40,13 +40,12 @@ export default function List() {
   function setPageIdx(value) {
     const queries = new URLSearchParams(location.search)
     queries.set("page", value)
-    history.push({ search: queries.toString() })
+    navigate.push({ search: queries.toString() })
   }
 
   const { result, isLoading, error } = useList(
-    `?${location.search.replace("?", "")}&from=${
-      pageIdx * MAX_ITEMS
-    }&size=${MAX_ITEMS}`
+    `?${location.search.replace("?", "")}&from=${pageIdx *
+      MAX_ITEMS}&size=${MAX_ITEMS}`
   )
 
   const pageCount = Math.ceil(result.total / MAX_ITEMS) || 0
@@ -69,9 +68,9 @@ export default function List() {
 
   function onSearch(query) {
     if (query.length > 0) {
-      history.push(`/list?q=${query}`)
+      navigate(`/list?q=${query}`)
     } else {
-      history.push(`/`)
+      navigate(`/`)
     }
   }
 
