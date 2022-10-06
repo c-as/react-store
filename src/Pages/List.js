@@ -40,12 +40,13 @@ export default function List() {
   function setPageIdx(value) {
     const queries = new URLSearchParams(location.search)
     queries.set("page", value)
-    navigate.push({ search: queries.toString() })
+    navigate({ search: queries.toString() })
   }
 
   const { result, isLoading, error } = useList(
-    `?${location.search.replace("?", "")}&from=${pageIdx *
-      MAX_ITEMS}&size=${MAX_ITEMS}`
+    `?${location.search.replace("?", "")}&from=${
+      pageIdx * MAX_ITEMS
+    }&size=${MAX_ITEMS}`
   )
 
   const pageCount = Math.ceil(result.total / MAX_ITEMS) || 0
