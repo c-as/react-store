@@ -100,39 +100,35 @@ export default function List() {
   }, [result])
 
   return (
-    <div>
-      <div>
-        <SearchBar onSearch={onSearch} />
-        <Catalog>
-          {result ? (
-            result.items.map((item) => (
-              <CatalogItem item={item} key={item._id} />
-            ))
-          ) : (
-            <StyledColorBox>{message}</StyledColorBox>
-          )}
-        </Catalog>
-        <PageSelector>
-          {pageIdx !== 0 && (
-            <>
-              <StyledButton onClick={() => setPageIdx(0)}>First</StyledButton>
-              <StyledButton onClick={decrementPage}>{"<"}</StyledButton>
-            </>
-          )}
+    <>
+      <SearchBar onSearch={onSearch} />
+      <Catalog>
+        {result ? (
+          result.items.map((item) => <CatalogItem item={item} key={item._id} />)
+        ) : (
+          <StyledColorBox>{message}</StyledColorBox>
+        )}
+      </Catalog>
+      <PageSelector>
+        {pageIdx !== 0 && (
+          <>
+            <StyledButton onClick={() => setPageIdx(0)}>First</StyledButton>
+            <StyledButton onClick={decrementPage}>{"<"}</StyledButton>
+          </>
+        )}
 
-          <span>{`${pageIdx + 1}/${pageCount}`}</span>
+        <span>{`${pageIdx + 1}/${pageCount}`}</span>
 
-          {pageCount > 1 && pageIdx !== pageCount - 1 && (
-            <>
-              <StyledButton onClick={incrementPage}>{">"}</StyledButton>
+        {pageCount > 1 && pageIdx !== pageCount - 1 && (
+          <>
+            <StyledButton onClick={incrementPage}>{">"}</StyledButton>
 
-              <StyledButton onClick={() => setPageIdx(pageCount - 1)}>
-                Last
-              </StyledButton>
-            </>
-          )}
-        </PageSelector>
-      </div>
-    </div>
+            <StyledButton onClick={() => setPageIdx(pageCount - 1)}>
+              Last
+            </StyledButton>
+          </>
+        )}
+      </PageSelector>
+    </>
   )
 }
