@@ -81,7 +81,7 @@ export default function List() {
 
   function onSearch(query: string) {
     if (query.length > 0) {
-      navigate(`/list?q=${query}`)
+      navigate(`/catalog?q=${query}`)
     } else {
       navigate(`/`)
     }

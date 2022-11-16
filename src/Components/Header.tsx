@@ -53,7 +53,7 @@ export default function Header() {
         <NavLink end to="/">
           Home
         </NavLink>
-        <NavLink to="/list?isOnSale=true">Deals</NavLink>
+        <NavLink to="/catalog?isOnSale=true">Deals</NavLink>
         <NavLink to="/cart">Cart {cartSize > 0 && cartSize}</NavLink>
       </nav>
     </Styled>

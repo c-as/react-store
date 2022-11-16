@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import Header from "./Components/Header"
 import Item from "./Pages/Item"
-import List from "./Pages/List"
+import Catalog from "./Pages/Catalog"
 import Cart from "./Pages/Cart"
 import Footer from "./Components/Footer"
 import { Button } from "./Components/Styles"
@@ -13,10 +13,10 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<List />} />
+          <Route path="/" element={<Catalog />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/item/:id" element={<Item />} />
-          <Route path="/list" element={<List />} />
+          <Route path="/catalog" element={<Catalog />} />
           <Route
             path="/checkout"
             element={
