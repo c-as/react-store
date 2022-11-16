@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route exact path="/" element={<List />} />
+          <Route path="/" element={<List />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/item/:id" element={<Item />} />
           <Route path="/list" element={<List />} />

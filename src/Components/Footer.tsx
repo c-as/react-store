@@ -13,10 +13,10 @@ const Inner = styled.div`
   padding: 1rem 0rem;
 `
 
-export default function Footer(props) {
+export default function Footer({ children }: { children: any }) {
   return (
     <Outer>
-      <Inner>{props.children}</Inner>
+      <Inner>{children}</Inner>
     </Outer>
   )
 }

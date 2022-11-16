@@ -1,7 +1,6 @@
-import React, { useState } from "react"
+import { FormEvent, KeyboardEvent, useState } from "react"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
-import PropTypes from "prop-types"
 import { Button, Input } from "./Styles"
 
 const Styled = styled.div`
@@ -42,14 +41,18 @@ const ClearButton = styled.div`
   padding-top: 0.3rem;
 `
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({
+  onSearch,
+}: {
+  onSearch: (query: string) => void
+}) {
   const location = useLocation()
 
   const [query, setQuery] = useState(() => {
     return new URLSearchParams(location.search).get("q") || ""
   })
 
-  function Submit(event) {
+  function Submit(event: FormEvent) {
     event.preventDefault()
     onSearch(query)
   }
@@ -59,8 +62,9 @@ export default function SearchBar({ onSearch }) {
     onSearch("")
   }
 
-  async function onKeyUp(event) {
+  function onKeyUp(event: KeyboardEvent<HTMLInputElement>) {
     if (event.keyCode === 27) {
+      console.log(event)
       Reset()
     }
   }
@@ -74,17 +78,9 @@ export default function SearchBar({ onSearch }) {
           onKeyUp={onKeyUp}
           value={query}
         />
-        <ClearButton type="reset" onClick={Reset}>
-          X
-        </ClearButton>
-        <SearchButton type="submit" onClick={Submit}>
-          Search
-        </SearchButton>
+        <ClearButton onClick={Reset}>X</ClearButton>
+        <SearchButton onClick={Submit}>Search</SearchButton>
       </Container>
     </Styled>
   )
-}
-
-SearchBar.propTypes = {
-  onSearch: PropTypes.func,
 }

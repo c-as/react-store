@@ -1,5 +1,4 @@
-import React, { useMemo } from "react"
-import PropTypes from "prop-types"
+import { useMemo } from "react"
 import FullStar from "../Assets/star_full.svg"
 import HalfStar from "../Assets/star_half.svg"
 import EmptyStar from "../Assets/star_empty.svg"
@@ -9,7 +8,7 @@ const StyledImg = styled.img`
   height: 1.5rem;
 `
 
-export default function Rating({ score }) {
+export default function Rating({ score }: { score: number }) {
   const stars = useMemo(() => {
     let stars = []
     let current = score
@@ -28,8 +27,4 @@ export default function Rating({ score }) {
   }, [score])
 
   return <div>{stars}</div>
-}
-
-Rating.propTypes = {
-  score: PropTypes.number,
 }

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react"
+import { useState, useEffect, useContext, ChangeEvent } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
 import { ColorBox, Button, Input } from "../Components/Styles"
 import useItem from "../Hooks/useItem"
-import { Context as CartContext, actions } from "../State/Cart"
+import { CartContext, CartAction, CartActionType } from "../State/Cart"
 
 const Styled = styled.div`
   @media (orientation: landscape) {
@@ -86,26 +86,28 @@ export default function Item() {
     }
   }, [item])
 
-  function quantityChanged(event) {
+  function quantityChanged(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target
     setQuantity(Number(value))
   }
 
-  const inCart = (cart[params.id] && cart[params.id].amount) || 0
+  const inCart = (params.id && cart[params.id] && cart[params.id].amount) || 0
 
   function addToCart() {
-    if (quantity + inCart > item.stockCount || item.stockCount === 0) {
-      alert("Insufficient Stock")
-      return
-    }
+    if (item) {
+      if (quantity + inCart > item.stockCount || item.stockCount === 0) {
+        alert("Insufficient Stock")
+        return
+      }
 
-    dispatch({
-      type: actions.set,
-      id: item._id,
-      item: item,
-      amount: quantity + inCart,
-    })
-    alert(`Added ${quantity} to cart`)
+      dispatch({
+        id: item._id,
+        item: item,
+        amount: quantity + inCart,
+        type: CartActionType.Set,
+      } as CartAction)
+      alert(`Added ${quantity} to cart`)
+    }
   }
 
   return (
@@ -130,7 +132,7 @@ export default function Item() {
               />
               <span>In stock: {item.stockCount}</span>
             </p>
-            <StyledButton onClick={(event) => addToCart(event)}>
+            <StyledButton onClick={(event) => addToCart()}>
               Add to cart
             </StyledButton>
             {(item.stockCount < 1 || quantity > item.stockCount) && (
@@ -146,7 +148,7 @@ export default function Item() {
       ) : isLoading ? (
         <Message>Fetching item..</Message>
       ) : (
-        <Error>{error.toString()}</Error>
+        <Error>{error && error.toString()}</Error>
       )}
     </Styled>
   )

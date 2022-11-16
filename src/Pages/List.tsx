@@ -1,13 +1,12 @@
-import React, { useMemo, useEffect } from "react"
+import { useMemo, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import styled from "styled-components"
 
 import useList from "../Hooks/useList"
 
-import Catalog from "../Components/Catalog"
 import CatalogItem from "../Components/CatalogItem"
 import SearchBar from "../Components/SearchBar"
-import { Button } from "../Components/Styles"
+import { Button, ColorBox } from "../Components/Styles"
 
 const PageSelector = styled.div`
   width: max-content;
@@ -29,6 +28,20 @@ const StyledButton = styled(Button)`
   padding: 0.4rem 1.5rem;
 `
 
+const Catalog = styled.div`
+  width: 95rem;
+  max-width: 100%;
+  margin: 0rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+`
+
+const StyledColorBox = styled(ColorBox)`
+  background-color: lightgray;
+`
+
 export default function List() {
   const navigate = useNavigate()
   const location = useLocation()
@@ -37,9 +50,9 @@ export default function List() {
 
   const pageIdx = Number(new URLSearchParams(location.search).get("page")) || 0
 
-  function setPageIdx(value) {
+  function setPageIdx(value: number) {
     const queries = new URLSearchParams(location.search)
-    queries.set("page", value)
+    queries.set("page", value.toString())
     navigate({ search: queries.toString() })
   }
 
@@ -49,8 +62,7 @@ export default function List() {
     }&size=${MAX_ITEMS}`
   )
 
-  const pageCount = Math.ceil(result.total / MAX_ITEMS) || 0
-
+  const pageCount = Math.ceil((result ? result.total : 0) / MAX_ITEMS) || 0
   const searchQuery = new URLSearchParams(location.search).get("q")
 
   const message = useMemo(() => {
@@ -67,7 +79,7 @@ export default function List() {
     }
   }, [error, searchQuery, isLoading])
 
-  function onSearch(query) {
+  function onSearch(query: string) {
     if (query.length > 0) {
       navigate(`/list?q=${query}`)
     } else {
@@ -85,17 +97,21 @@ export default function List() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [result.items])
+  }, [result])
 
   return (
     <div>
       <div>
         <SearchBar onSearch={onSearch} />
-        <Catalog
-          items={result.items}
-          ItemElement={CatalogItem}
-          message={message}
-        />
+        <Catalog>
+          {result ? (
+            result.items.map((item) => (
+              <CatalogItem item={item} key={item._id} />
+            ))
+          ) : (
+            <StyledColorBox>{message}</StyledColorBox>
+          )}
+        </Catalog>
         <PageSelector>
           {pageIdx !== 0 && (
             <>

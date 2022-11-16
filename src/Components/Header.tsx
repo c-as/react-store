@@ -1,8 +1,8 @@
-import React, { useContext } from "react"
+import { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import logo from "../Assets/logo.svg"
 import styled from "styled-components"
-import { Context as CartContext } from "../State/Cart"
+import { CartContext } from "../State/Cart"
 
 const Styled = styled.header`
   width: 100%;
@@ -53,14 +53,7 @@ export default function Header() {
         <NavLink end to="/">
           Home
         </NavLink>
-        <NavLink
-          isActive={(match, location) => {
-            return location.search.includes("isOnSale=true")
-          }}
-          to="/list?isOnSale=true"
-        >
-          Deals
-        </NavLink>
+        <NavLink to="/list?isOnSale=true">Deals</NavLink>
         <NavLink to="/cart">Cart {cartSize > 0 && cartSize}</NavLink>
       </nav>
     </Styled>

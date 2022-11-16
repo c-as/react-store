@@ -1,15 +1,28 @@
-import React, { useContext } from "react"
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { Context as CartContext, actions } from "../State/Cart"
-import Catalog from "../Components/Catalog"
+import { CartAction, CartActionType, CartContext } from "../State/Cart"
 import CartItem from "../Components/CartItem"
 import styled from "styled-components"
-import { Button } from "../Components/Styles"
+import { Button, ColorBox } from "../Components/Styles"
 
 const Styled = styled.div`
   width: 70rem;
   max-width: 100%;
   margin: 0rem auto 0.5rem;
+`
+
+const Catalog = styled.div`
+  width: 95rem;
+  max-width: 100%;
+  margin: 0rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+`
+
+const StyledColorBox = styled(ColorBox)`
+  background-color: lightgray;
 `
 
 const CartInfo = styled.div`
@@ -37,21 +50,23 @@ export default function Cart() {
     dispatch,
   } = useContext(CartContext)
 
-  const items = itemCount > 0 ? cart : []
+  const items = itemCount > 0 ? Object.values(cart) : []
 
   return (
     <Styled>
-      <Catalog
-        items={Object.values(items)}
-        ItemElement={CartItem}
-        message={"Cart is empty"}
-      />
+      <Catalog>
+        {items.length > 0 ? (
+          items.map((item) => <CartItem item={item} key={item._id} />)
+        ) : (
+          <StyledColorBox>Cart is empty</StyledColorBox>
+        )}
+      </Catalog>
       <CartInfo>
         {itemCount > 0 && (
           <>
             <StyledButton
               onClick={() => {
-                dispatch({ type: actions.clear })
+                dispatch({ type: CartActionType.Clear } as CartAction)
                 navigate("/checkout")
               }}
             >

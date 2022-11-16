@@ -1,10 +1,9 @@
-import React from "react"
 import Rating from "./Rating"
-import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Sale from "./Sale"
 import { Button } from "./Styles"
+import { ItemInterface } from "../Lib/Api"
 
 const Styled = styled.div`
   margin: 0.5rem;
@@ -56,7 +55,7 @@ const StyledSale = styled(Sale)`
   font-size: 0.9rem;
 `
 
-export default function CatalogItem({ item }) {
+export default function CatalogItem({ item }: { item: ItemInterface }) {
   return (
     <Styled>
       <ImgContainer>
@@ -76,8 +75,4 @@ export default function CatalogItem({ item }) {
       </Link>
     </Styled>
   )
-}
-
-CatalogItem.propTypes = {
-  item: PropTypes.object,
 }
