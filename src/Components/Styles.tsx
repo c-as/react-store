@@ -1,15 +1,18 @@
 import styled from "styled-components"
 
+export const Primary = "#0A2E36"
+export const Secondary = "#738F96"
+export const Accent = "#14CC60"
+
 export const ColorBox = styled.p`
   padding: 0.4rem 1rem;
-  background-color: lightgreen;
+  background-color: ${Accent};
   border-radius: 0.3rem;
   width: fit-content;
 `
 
 export const Button = styled(ColorBox)`
   color: white;
-  background-color: orange;
   width: max-content;
   cursor: pointer;
   text-decoration: none;

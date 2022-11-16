@@ -1,19 +1,20 @@
 import { FormEvent, KeyboardEvent, useState } from "react"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
-import { Button, Input } from "./Styles"
+import { Button, Input, Secondary } from "./Styles"
 
 const Styled = styled.div`
   width: 100%;
   box-sizing: border-box;
   padding: 0rem 0.5rem;
+  background-color: ${Secondary};
 `
 
 const Container = styled.form`
   width: 40rem;
   max-width: 100%;
   margin: 0rem auto;
-  padding: 0.5rem 0rem 0rem;
+  padding: 0.4rem 0rem;
   display: flex;
 `
 
@@ -32,6 +33,7 @@ const SearchButton = styled(Button)`
 `
 
 const ClearButton = styled.div`
+  background-color: white;
   display: inline-block;
   border: 1px solid lightgrey;
   border-left: none;

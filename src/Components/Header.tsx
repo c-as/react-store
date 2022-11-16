@@ -3,14 +3,14 @@ import { Link, NavLink } from "react-router-dom"
 import logo from "../Assets/logo.svg"
 import styled from "styled-components"
 import { CartContext } from "../State/Cart"
+import { Accent, Primary } from "./Styles"
 
 const Styled = styled.header`
   width: 100%;
   padding: 0em 1em 0em 0rem;
   box-sizing: border-box;
-  background-color: blue;
+  background-color: ${Primary};
   display: flex;
-  color: white;
   a {
     color: white;
   }
@@ -31,10 +31,10 @@ const Styled = styled.header`
     a {
       padding: 0.5rem;
       margin-left: 0.5rem;
+      text-decoration: none;
     }
     .active {
-      background-color: blue;
-      color: white;
+      color: ${Accent};
       font-weight: 1000;
     }
   }
@@ -47,7 +47,7 @@ export default function Header() {
     <Styled>
       <img src={logo} alt="" />
       <h2>
-        <Link to="/">Store</Link>
+        <Link to="/">Atomic-Store</Link>
       </h2>
       <nav>
         <NavLink end to="/">
