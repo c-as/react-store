@@ -12,9 +12,6 @@ const Styled = styled.div`
 `
 
 const Catalog = styled.div`
-  width: 95rem;
-  max-width: 100%;
-  margin: 0rem auto;
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
