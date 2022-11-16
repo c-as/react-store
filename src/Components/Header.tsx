@@ -7,7 +7,7 @@ import { Accent, Primary } from "./Styles"
 
 const Styled = styled.header`
   width: 100%;
-  padding: 0em 1em 0em 0rem;
+  padding: 0.5em 2em;
   box-sizing: border-box;
   background-color: ${Primary};
   display: flex;
@@ -15,19 +15,12 @@ const Styled = styled.header`
     color: white;
   }
   img {
-    height: 4rem;
-  }
-  h2 {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: auto;
-    a {
-      text-decoration: none;
-    }
+    height: 3rem;
   }
   nav {
     margin-top: auto;
     margin-bottom: auto;
+    padding-right: 1rem;
     a {
       padding: 0.5rem;
       margin-left: 0.5rem;
@@ -40,15 +33,25 @@ const Styled = styled.header`
   }
 `
 
+const Title = styled.h1`
+  font-family: "Roboto Slab";
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+  a {
+    text-decoration: none;
+  }
+`
+
 export default function Header() {
   const { itemCount: cartSize } = useContext(CartContext)
 
   return (
     <Styled>
       <img src={logo} alt="" />
-      <h2>
+      <Title>
         <Link to="/">Atomic-Store</Link>
-      </h2>
+      </Title>
       <nav>
         <NavLink end to="/">
           Home
