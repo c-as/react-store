@@ -29,7 +29,7 @@ const StyledButton = styled(Button)`
 `
 
 const Catalog = styled.div`
-  width: 95rem;
+  width: 75rem;
   max-width: 100%;
   margin: 0rem auto;
   display: flex;
