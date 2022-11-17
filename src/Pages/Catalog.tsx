@@ -2,7 +2,7 @@ import { useMemo, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import styled from "styled-components"
 import useList from "../Hooks/useList"
-import CatalogItem from "../Components/CatalogItem"
+import CatalogProduct from "../Components/CatalogProduct"
 import { Message, Title } from "../Components/Styles"
 import Button from "../Components/Button"
 
@@ -64,7 +64,7 @@ export default function List() {
 
   const message = useMemo(() => {
     if (isLoading) {
-      return "Fetching items.."
+      return "Fetching products.."
     } else {
       if (error) {
         return error.toString()
@@ -105,7 +105,9 @@ export default function List() {
       <Title>{title}</Title>
       <Catalog>
         {result ? (
-          result.items.map((item) => <CatalogItem item={item} key={item._id} />)
+          result.products.map((product) => (
+            <CatalogProduct product={product} key={product._id} />
+          ))
         ) : (
           <Message>{message}</Message>
         )}

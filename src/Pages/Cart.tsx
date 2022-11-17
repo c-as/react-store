@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { CartAction, CartActionType, CartContext } from "../State/Cart"
-import CartItem from "../Components/CartItem"
+import CartProduct from "../Components/CartProduct"
 import styled from "styled-components"
 import { Message, Title } from "../Components/Styles"
 import Button from "../Components/Button"
@@ -38,26 +38,28 @@ export default function Cart() {
   const navigate = useNavigate()
 
   const {
-    items: cart,
-    itemCount,
+    products: cart,
+    productCount,
     totalPrice,
     dispatch,
   } = useContext(CartContext)
 
-  const items = itemCount > 0 ? Object.values(cart) : []
+  const products = productCount > 0 ? Object.values(cart) : []
 
   return (
     <Styled>
       <Title>Your Cart</Title>
       <Catalog>
-        {items.length > 0 ? (
-          items.map((item) => <CartItem item={item} key={item._id} />)
+        {products.length > 0 ? (
+          products.map((product) => (
+            <CartProduct product={product} key={product._id} />
+          ))
         ) : (
           <Message>Cart is empty</Message>
         )}
       </Catalog>
       <CartInfo>
-        {itemCount > 0 && (
+        {productCount > 0 && (
           <>
             <StyledButton
               onClick={() => {
@@ -69,7 +71,7 @@ export default function Cart() {
             </StyledButton>
             <span>
               {" "}
-              {itemCount} Items, Total: ${totalPrice}
+              {productCount} Products, Total: ${totalPrice}
             </span>
           </>
         )}

@@ -14,9 +14,9 @@ export default function useList(query: string) {
         try {
           setIsLoading(true)
           let result = await fetchList(query)
-          result.items.forEach((item, i) => {
-            if (item._id === "5fbfff7d58aa65167efb52b1") {
-              result.items.splice(i, 1)
+          result.products.forEach((product, i) => {
+            if (product._id === "5fbfff7d58aa65167efb52b1") {
+              result.products.splice(i, 1)
             }
           })
 

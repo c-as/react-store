@@ -1,5 +1,5 @@
 import { createContext, useReducer, useMemo, Dispatch } from "react"
-import { ItemInterface } from "../Lib/Api"
+import { ProductInterface } from "../Lib/Api"
 
 export enum CartActionType {
   Set,
@@ -8,26 +8,26 @@ export enum CartActionType {
 }
 
 export interface CartAction {
-  item?: ItemInterface
+  product?: ProductInterface
   id?: string
   amount?: number
   type: CartActionType
 }
 
 interface CartState {
-  items: { [index: string]: CartItemInterface }
+  products: { [index: string]: CartProductInterface }
 }
 
 interface CartContents {
-  items: {
-    [index: string]: CartItemInterface
+  products: {
+    [index: string]: CartProductInterface
   }
-  itemCount: number
+  productCount: number
   totalPrice: string
   dispatch: Dispatch<CartAction>
 }
 
-export interface CartItemInterface extends ItemInterface {
+export interface CartProductInterface extends ProductInterface {
   amount: number
 }
 
@@ -35,24 +35,24 @@ function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case CartActionType.Set:
       if (!action.id) {
-        throw Error("Item id not defined!")
+        throw Error("Product id not defined!")
       }
-      let item = action.item || state.items[action.id]
-      if (!item) {
-        throw Error("Item data not defined!")
+      let product = action.product || state.products[action.id]
+      if (!product) {
+        throw Error("Product data not defined!")
       }
       if (!action.amount) {
         throw Error("No amount")
       }
-      if (action.amount > item.stockCount || item.stockCount === 0) {
+      if (action.amount > product.stockCount || product.stockCount === 0) {
         throw Error("Insufficient stock")
       }
       return {
         ...state,
-        items: {
-          ...state.items,
+        products: {
+          ...state.products,
           [action.id]: {
-            ...item,
+            ...product,
             amount: action.amount,
           },
         },
@@ -60,15 +60,15 @@ function reducer(state: CartState, action: CartAction): CartState {
 
     case CartActionType.Remove:
       if (!action.id) {
-        throw Error("Item id not defined!")
+        throw Error("Product id not defined!")
       }
 
       return {
         ...state,
-        items: {
-          ...state.items,
+        products: {
+          ...state.products,
           [action.id]: {
-            ...state.items[action.id],
+            ...state.products[action.id],
             amount: 0,
           },
         },
@@ -76,38 +76,40 @@ function reducer(state: CartState, action: CartAction): CartState {
     case CartActionType.Clear:
       return {
         ...state,
-        items: {},
+        products: {},
       }
   }
 }
 
 export const CartContext = createContext<CartContents>({
-  items: {},
-  itemCount: 0,
+  products: {},
+  productCount: 0,
   totalPrice: Number(0).toFixed(2),
   dispatch: () => undefined,
 })
 
 export function Provider({ children }: { children: any }) {
-  const [{ items }, dispatch] = useReducer(reducer, {
-    items: {},
+  const [{ products }, dispatch] = useReducer(reducer, {
+    products: {},
   })
 
-  const [itemCount, totalPrice] = useMemo(
+  const [productCount, totalPrice] = useMemo(
     function () {
       let count = 0
       let price = 0
-      Object.entries(items).forEach(([_, item]) => {
-        count += item.amount
-        price += item.price * item.amount
+      Object.entries(products).forEach(([_, product]) => {
+        count += product.amount
+        price += product.price * product.amount
       })
       return [count, price.toFixed(2)]
     },
-    [items]
+    [products]
   )
 
   return (
-    <CartContext.Provider value={{ items, itemCount, totalPrice, dispatch }}>
+    <CartContext.Provider
+      value={{ products, productCount, totalPrice, dispatch }}
+    >
       {children}
     </CartContext.Provider>
   )

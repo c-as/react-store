@@ -8,7 +8,7 @@ import {
   CartContext,
   CartAction,
   CartActionType,
-  CartItemInterface,
+  CartProductInterface,
 } from "../State/Cart"
 
 const Styled = styled.div`
@@ -80,19 +80,23 @@ const StyledButton = styled(Button)`
   display: inline;
 `
 
-export default function CartItem({ item }: { item: CartItemInterface }) {
+export default function CartProduct({
+  product,
+}: {
+  product: CartProductInterface
+}) {
   const { dispatch } = useContext(CartContext)
-  const [quantity, setQuantity] = useState(item.amount)
+  const [quantity, setQuantity] = useState(product.amount)
 
-  function setItemQuantity() {
-    if (quantity > item.stockCount) {
+  function setProductQuantity() {
+    if (quantity > product.stockCount) {
       alert("Insufficient Stock")
-      setQuantity(item.amount)
+      setQuantity(product.amount)
       return
     }
 
     dispatch({
-      id: item._id,
+      id: product._id,
       amount: quantity,
       type: CartActionType.Set,
     } as CartAction)
@@ -100,42 +104,42 @@ export default function CartItem({ item }: { item: CartItemInterface }) {
 
   return (
     <>
-      {item.amount > 0 && (
+      {product.amount > 0 && (
         <Styled>
           <ImgContainer>
             <Helper />
-            <img src={item.imageUrl} alt={item.name} />
+            <img src={product.imageUrl} alt={product.name} />
           </ImgContainer>
           <Title>
             {" "}
-            <Link to={`/item/${item._id}`}>{item.name} </Link>{" "}
-            <div>${item.price}</div>
+            <Link to={`/product/${product._id}`}>{product.name} </Link>{" "}
+            <div>${product.price}</div>
           </Title>
           <Menu>
             {"Quantity:  "}
             <Input
               type="number"
               min="0"
-              max={item.stockCount}
+              max={product.stockCount}
               value={quantity}
               onChange={(event) => {
                 setQuantity(Number(event.target.value))
               }}
-              onBlur={setItemQuantity}
-              onClick={setItemQuantity}
+              onBlur={setProductQuantity}
+              onClick={setProductQuantity}
               step="1"
             />
             <StyledButton
               onClick={() => {
                 dispatch({
-                  id: item._id,
+                  id: product._id,
                   type: CartActionType.Remove,
                 } as CartAction)
               }}
             >
               Remove
             </StyledButton>
-            <span>In stock: {item.stockCount}</span>
+            <span>In stock: {product.stockCount}</span>
           </Menu>
         </Styled>
       )}

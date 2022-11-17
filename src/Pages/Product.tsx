@@ -4,12 +4,11 @@ import styled from "styled-components"
 import Rating from "../Components/Rating"
 import { Input, Title, Message, Error, Sale } from "../Components/Styles"
 import Button from "../Components/Button"
-import useItem from "../Hooks/useItem"
+import useProduct from "../Hooks/useProduct"
 import { CartContext, CartAction, CartActionType } from "../State/Cart"
 
 const Styled = styled.div`
   @media (orientation: landscape) {
-    box-sizing: border-box;
     width: 70rem;
     max-width: 100%;
     margin: 0rem auto;
@@ -63,20 +62,20 @@ const Name = styled(Title)`
   padding: 0;
 `
 
-export default function Item() {
+export default function Product() {
   const params = useParams()
 
-  const { item, isLoading, error } = useItem(params.id)
+  const { product, isLoading, error } = useProduct(params.id)
 
   const [quantity, setQuantity] = useState(0)
 
-  const { items: cart, dispatch } = useContext(CartContext)
+  const { products: cart, dispatch } = useContext(CartContext)
 
   useEffect(() => {
-    if (item && item.stockCount > 0) {
+    if (product && product.stockCount > 0) {
       setQuantity(1)
     }
-  }, [item])
+  }, [product])
 
   function quantityChanged(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target
@@ -86,15 +85,15 @@ export default function Item() {
   const inCart = (params.id && cart[params.id] && cart[params.id].amount) || 0
 
   function addToCart() {
-    if (item) {
-      if (quantity + inCart > item.stockCount || item.stockCount === 0) {
+    if (product) {
+      if (quantity + inCart > product.stockCount || product.stockCount === 0) {
         alert("Insufficient Stock")
         return
       }
 
       dispatch({
-        id: item._id,
-        item: item,
+        id: product._id,
+        product: product,
         amount: quantity + inCart,
         type: CartActionType.Set,
       } as CartAction)
@@ -105,19 +104,19 @@ export default function Item() {
   return (
     <Styled>
       <Title>Product</Title>
-      {item ? (
+      {product ? (
         <div>
-          <ProductImg src={item.imageUrl} alt={item.name} />
+          <ProductImg src={product.imageUrl} alt={product.name} />
           <Info>
-            <Name>{item.name}</Name>
-            {item.isOnSale && <Sale>On Sale</Sale>}
-            <Rating score={item.avgRating} />
-            <p>{item.description}</p>
-            <h3>${item.price}</h3>
+            <Name>{product.name}</Name>
+            {product.isOnSale && <Sale>On Sale</Sale>}
+            <Rating score={product.avgRating} />
+            <p>{product.description}</p>
+            <h3>${product.price}</h3>
             {inCart > 0 && (
               <>
                 <Message>
-                  {inCart} of this item is currently in your cart.
+                  {inCart} of this product is currently in your cart.
                 </Message>
                 <StyledButton to="/cart">View cart</StyledButton>
               </>
@@ -126,21 +125,21 @@ export default function Item() {
               <Input
                 type="number"
                 min="1"
-                max={item.stockCount}
+                max={product.stockCount}
                 value={quantity}
                 onChange={(event) => quantityChanged(event)}
                 step="1"
               />
-              <span>In stock: {item.stockCount}</span>
+              <span>In stock: {product.stockCount}</span>
             </p>
             <StyledButton onClick={() => addToCart()}>Add to cart</StyledButton>
-            {(item.stockCount < 1 || quantity > item.stockCount) && (
+            {(product.stockCount < 1 || quantity > product.stockCount) && (
               <Error>Insufficient stock!</Error>
             )}
           </Info>
         </div>
       ) : isLoading ? (
-        <Fetching>Fetching item..</Fetching>
+        <Fetching>Fetching product..</Fetching>
       ) : (
         <Error>{error && error.toString()}</Error>
       )}

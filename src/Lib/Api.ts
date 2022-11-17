@@ -1,6 +1,6 @@
 export const url = "https://gp-super-store-api.herokuapp.com"
 
-export interface ItemInterface {
+export interface ProductInterface {
   _id: string
   avgRating: number
   description: string
@@ -13,7 +13,7 @@ export interface ItemInterface {
 
 export interface List {
   hasMore: boolean
-  items: ItemInterface[]
+  products: ProductInterface[]
   next: any
   total: number
 }
@@ -25,6 +25,7 @@ async function fetchJson(query: string): Promise<any> {
       throw Error(`Could not fetch '${query}', error code ${response.status}`)
     }
     const json = await response.json()
+    json.products = json.items
     return json
   } catch (error) {
     throw error
@@ -41,14 +42,14 @@ async function fetchList(params: string) {
   }
 }
 
-async function fetchItem(id: string) {
+async function fetchProduct(id: string) {
   try {
     return await fetchJson(`${url}/item/${id}`).then(
-      (data) => data as ItemInterface
+      (data) => data as ProductInterface
     )
   } catch (error) {
     throw error
   }
 }
 
-export { fetchList, fetchItem }
+export { fetchList, fetchProduct }

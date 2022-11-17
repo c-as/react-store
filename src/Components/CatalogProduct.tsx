@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { Sale } from "./Styles"
 import Button from "./Button"
-import { ItemInterface } from "../Lib/Api"
+import { ProductInterface } from "../Lib/Api"
 
 const Styled = styled.div`
   margin: 0.5rem;
@@ -54,22 +54,26 @@ const StyledSale = styled(Sale)`
   font-size: 0.9rem;
 `
 
-export default function CatalogItem({ item }: { item: ItemInterface }) {
+export default function CatalogProduct({
+  product,
+}: {
+  product: ProductInterface
+}) {
   return (
     <Styled>
       <ImgContainer>
         <Helper />
-        <img src={item.imageUrl} alt={item.name} />
+        <img src={product.imageUrl} alt={product.name} />
       </ImgContainer>
-      <Link to={`/item/${item._id}`}>
-        <header>{item.name}</header>
+      <Link to={`/product/${product._id}`}>
+        <header>{product.name}</header>
       </Link>
       <Info>
-        <Rating score={item.avgRating} />
-        <h3> ${item.price} </h3>
-        {item.isOnSale && <StyledSale>On Sale</StyledSale>}
+        <Rating score={product.avgRating} />
+        <h3> ${product.price} </h3>
+        {product.isOnSale && <StyledSale>On Sale</StyledSale>}
       </Info>
-      <StyledButton to={`/item/${item._id}`}>View Product</StyledButton>
+      <StyledButton to={`/product/${product._id}`}>View Product</StyledButton>
     </Styled>
   )
 }

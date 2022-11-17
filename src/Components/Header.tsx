@@ -45,7 +45,7 @@ const CartIndicator = styled(ColorBox)`
 `
 
 export default function Header() {
-  const { itemCount: cartSize } = useContext(CartContext)
+  const { productCount: cartSize } = useContext(CartContext)
   const navigate = useNavigate()
 
   function onSearch(query: string) {

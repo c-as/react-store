@@ -1,7 +1,7 @@
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Header from "./Components/Header"
-import Item from "./Pages/Item"
+import Product from "./Pages/Product"
 import Catalog from "./Pages/Catalog"
 import Cart from "./Pages/Cart"
 import Footer from "./Components/Footer"
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Catalog />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/item/:id" element={<Item />} />
+          <Route path="/product/:id" element={<Product />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route
             path="/checkout"

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { fetchItem, ItemInterface } from "../Lib/Api"
+import { fetchProduct, ProductInterface } from "../Lib/Api"
 
-export default function useItem(id: string | undefined) {
-  const [item, setResult] = useState<ItemInterface>()
+export default function useProduct(id: string | undefined) {
+  const [product, setResult] = useState<ProductInterface>()
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error>()
 
@@ -13,7 +13,7 @@ export default function useItem(id: string | undefined) {
       async function getList(id: string) {
         try {
           setIsLoading(true)
-          const result = await fetchItem(id)
+          const result = await fetchProduct(id)
           setResult(result)
         } catch (error) {
           if (error instanceof Error) {
@@ -34,7 +34,7 @@ export default function useItem(id: string | undefined) {
   )
 
   return {
-    item,
+    product,
     isLoading,
     error,
   }
