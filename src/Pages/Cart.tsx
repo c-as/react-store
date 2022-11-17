@@ -6,7 +6,7 @@ import styled from "styled-components"
 import { Button, ColorBox } from "../Components/Styles"
 
 const Styled = styled.div`
-  width: 70rem;
+  width: 60rem;
   max-width: 100%;
   margin: 0rem auto 0.5rem;
 `
