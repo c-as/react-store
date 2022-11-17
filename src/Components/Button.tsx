@@ -9,6 +9,7 @@ export const Styled = styled(ColorBox)`
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+  user-select: none;
   a {
     color: inherit;
     font: inherit;
