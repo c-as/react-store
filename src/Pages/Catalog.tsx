@@ -5,7 +5,7 @@ import styled from "styled-components"
 import useList from "../Hooks/useList"
 
 import CatalogItem from "../Components/CatalogItem"
-import { Button, ColorBox, Title } from "../Components/Styles"
+import { Button, Message, Title } from "../Components/Styles"
 
 const Container = styled.div`
   width: 75rem;
@@ -38,10 +38,6 @@ const Catalog = styled.div`
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: center;
-`
-
-const StyledColorBox = styled(ColorBox)`
-  background-color: lightgray;
 `
 
 export default function List() {
@@ -112,7 +108,7 @@ export default function List() {
         {result ? (
           result.items.map((item) => <CatalogItem item={item} key={item._id} />)
         ) : (
-          <StyledColorBox>{message}</StyledColorBox>
+          <Message>{message}</Message>
         )}
       </Catalog>
       <PageSelector>

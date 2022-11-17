@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom"
 import { CartAction, CartActionType, CartContext } from "../State/Cart"
 import CartItem from "../Components/CartItem"
 import styled from "styled-components"
-import { Button, ColorBox, Title } from "../Components/Styles"
+import {
+  Button,
+  ColorBox,
+  Message,
+  Secondary,
+  Title,
+} from "../Components/Styles"
 
 const Styled = styled.div`
   width: 60rem;
@@ -16,10 +22,6 @@ const Catalog = styled.div`
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: center;
-`
-
-const StyledColorBox = styled(ColorBox)`
-  background-color: lightgray;
 `
 
 const CartInfo = styled.div`
@@ -56,7 +58,7 @@ export default function Cart() {
         {items.length > 0 ? (
           items.map((item) => <CartItem item={item} key={item._id} />)
         ) : (
-          <StyledColorBox>Cart is empty</StyledColorBox>
+          <Message>Cart is empty</Message>
         )}
       </Catalog>
       <CartInfo>

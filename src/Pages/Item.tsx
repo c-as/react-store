@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
-import { ColorBox, Button, Input, Title } from "../Components/Styles"
+import { Button, Input, Title, Message, Error } from "../Components/Styles"
 import useItem from "../Hooks/useItem"
 import { CartContext, CartAction, CartActionType } from "../State/Cart"
 
@@ -53,22 +53,10 @@ const StyledButton = styled(Button)`
   width: 6rem;
 `
 
-const StockWarning = styled(ColorBox)`
-  background-color: lightpink;
-`
-
-const CartWarning = styled(ColorBox)`
-  background-color: lightblue;
-`
-
-const Message = styled(ColorBox)`
+const Fetching = styled(Message)`
   background-color: lightgray;
   margin: 0rem auto;
   width: fit-content;
-`
-
-const Error = styled(Message)`
-  background-color: lightpink;
 `
 
 const Name = styled(Title)`
@@ -140,17 +128,17 @@ export default function Item() {
               Add to cart
             </StyledButton>
             {(item.stockCount < 1 || quantity > item.stockCount) && (
-              <StockWarning>Insufficient stock!</StockWarning>
+              <Error>Insufficient stock!</Error>
             )}
             {inCart > 0 && (
-              <CartWarning>
+              <Message>
                 {inCart} of this item is currently in your cart.
-              </CartWarning>
+              </Message>
             )}
           </Info>
         </div>
       ) : isLoading ? (
-        <Message>Fetching item..</Message>
+        <Fetching>Fetching item..</Fetching>
       ) : (
         <Error>{error && error.toString()}</Error>
       )}

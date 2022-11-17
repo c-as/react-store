@@ -45,6 +45,14 @@ export const Input = styled.input`
   }
 `
 
+export const Message = styled(ColorBox)`
+  background-color: ${Secondary};
+`
+
+export const Error = styled(ColorBox)`
+  background-color: ${SecondaryAccent};
+`
+
 export const Title = styled.h1`
   font-family: "Roboto Slab";
   padding-left: 1.5rem;
