@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const Primary = "#0A2E36"
 export const Secondary = "#bdc9cc"
 export const Accent = "#14CC60"
+export const SecondaryAccent = "#ff5a5a"
 
 export const ColorBox = styled.p`
   padding: 0.4rem 1rem;
