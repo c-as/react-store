@@ -67,7 +67,6 @@ export default function SearchBar({
 
   function onKeyUp(event: KeyboardEvent<HTMLInputElement>) {
     if (event.keyCode === 27) {
-      console.log(event)
       Reset()
     }
   }
