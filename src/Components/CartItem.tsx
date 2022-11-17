@@ -1,7 +1,9 @@
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { Button, Input } from "./Styles"
+import { Input } from "./Styles"
+import Button from "./Button"
+
 import {
   CartContext,
   CartAction,

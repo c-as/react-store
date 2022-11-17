@@ -2,14 +2,8 @@ import { useState, useEffect, useContext, ChangeEvent } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
-import {
-  Button,
-  Input,
-  Title,
-  Message,
-  Error,
-  Sale,
-} from "../Components/Styles"
+import { Input, Title, Message, Error, Sale } from "../Components/Styles"
+import Button from "../Components/Button"
 import useItem from "../Hooks/useItem"
 import { CartContext, CartAction, CartActionType } from "../State/Cart"
 
@@ -119,6 +113,14 @@ export default function Item() {
             <Rating score={item.avgRating} />
             <p>{item.description}</p>
             <h3>${item.price}</h3>
+            {inCart > 0 && (
+              <>
+                <Message>
+                  {inCart} of this item is currently in your cart.
+                </Message>
+                <StyledButton to="/cart">View cart</StyledButton>
+              </>
+            )}
             <p>
               <Input
                 type="number"
@@ -130,16 +132,9 @@ export default function Item() {
               />
               <span>In stock: {item.stockCount}</span>
             </p>
-            <StyledButton onClick={(event) => addToCart()}>
-              Add to cart
-            </StyledButton>
+            <StyledButton onClick={() => addToCart()}>Add to cart</StyledButton>
             {(item.stockCount < 1 || quantity > item.stockCount) && (
               <Error>Insufficient stock!</Error>
-            )}
-            {inCart > 0 && (
-              <Message>
-                {inCart} of this item is currently in your cart.
-              </Message>
             )}
           </Info>
         </div>

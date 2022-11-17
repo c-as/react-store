@@ -1,7 +1,8 @@
 import { FormEvent, KeyboardEvent, useState } from "react"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
-import { Button, Input, Secondary } from "./Styles"
+import { Input, Secondary } from "./Styles"
+import Button from "./Button"
 
 const Styled = styled.div`
   width: 100%;

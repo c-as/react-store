@@ -1,7 +1,8 @@
 import Rating from "./Rating"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { Button, Sale } from "./Styles"
+import { Sale } from "./Styles"
+import Button from "./Button"
 import { ItemInterface } from "../Lib/Api"
 
 const Styled = styled.div`
@@ -68,9 +69,7 @@ export default function CatalogItem({ item }: { item: ItemInterface }) {
         <h3> ${item.price} </h3>
         {item.isOnSale && <StyledSale>On Sale</StyledSale>}
       </Info>
-      <Link to={`/item/${item._id}`}>
-        <StyledButton>View Product</StyledButton>
-      </Link>
+      <StyledButton to={`/item/${item._id}`}>View Product</StyledButton>
     </Styled>
   )
 }

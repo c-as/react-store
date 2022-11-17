@@ -1,11 +1,10 @@
 import { useMemo, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import styled from "styled-components"
-
 import useList from "../Hooks/useList"
-
 import CatalogItem from "../Components/CatalogItem"
-import { Button, Message, Title } from "../Components/Styles"
+import { Message, Title } from "../Components/Styles"
+import Button from "../Components/Button"
 
 const Container = styled.div`
   width: 75rem;

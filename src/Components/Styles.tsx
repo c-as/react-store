@@ -12,22 +12,6 @@ export const ColorBox = styled.p`
   width: fit-content;
 `
 
-export const Button = styled(ColorBox)`
-  color: white;
-  width: max-content;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  a {
-    color: inherit;
-    font: inherit;
-    text-decoration: inherit;
-  }
-  :hover {
-    text-decoration: underline;
-  }
-`
-
 export const Input = styled.input`
   font: inherit;
   border-radius: 0.3rem;

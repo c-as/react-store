@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { CartAction, CartActionType, CartContext } from "../State/Cart"
 import CartItem from "../Components/CartItem"
 import styled from "styled-components"
-import { Button, Message, Title } from "../Components/Styles"
+import { Message, Title } from "../Components/Styles"
+import Button from "../Components/Button"
 
 const Styled = styled.div`
   width: 60rem;

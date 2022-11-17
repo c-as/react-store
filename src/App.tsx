@@ -1,11 +1,11 @@
 import "./App.css"
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Header from "./Components/Header"
 import Item from "./Pages/Item"
 import Catalog from "./Pages/Catalog"
 import Cart from "./Pages/Cart"
 import Footer from "./Components/Footer"
-import { Button } from "./Components/Styles"
+import Button from "./Components/Button"
 import { Provider as CartProvider } from "./State/Cart"
 
 function App() {
@@ -23,8 +23,8 @@ function App() {
             element={
               <div>
                 <h2 style={{ textAlign: "center" }}>Thank you</h2>
-                <Button style={{ margin: "auto" }}>
-                  <Link to="/">Return to the home page </Link>
+                <Button to="/" style={{ margin: "auto" }}>
+                  Return to the home page
                 </Button>
               </div>
             }
