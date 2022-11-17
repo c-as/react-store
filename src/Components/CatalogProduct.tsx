@@ -16,9 +16,6 @@ const Styled = styled.div`
   header {
     font-size: 1.5rem;
   }
-  a {
-    text-decoration-color: white;
-  }
 `
 
 const ImgContainer = styled.div`
