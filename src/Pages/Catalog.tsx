@@ -83,6 +83,8 @@ export default function List() {
       return `Results for query: '${params.get("q")}'`
     } else if (params.get("isOnSale") === "true") {
       return `Deals`
+    } else if (params.get("page")) {
+      return `Page: ${Number(params.get("page")) + 1}`
     } else {
       return `Catalog`
     }
