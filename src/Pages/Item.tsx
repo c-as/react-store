@@ -13,7 +13,7 @@ const Styled = styled.div`
     width: 70rem;
     max-width: 100%;
     margin: 0rem auto;
-    padding: 5rem 5rem;
+    padding: 0rem 5rem;
   }
   @media (orientation: portrait) {
     margin: 1rem 3rem 3rem;
@@ -104,6 +104,7 @@ export default function Item() {
 
   return (
     <Styled>
+      <Title>Product</Title>
       {item ? (
         <div>
           <ProductImg src={item.imageUrl} alt={item.name} />
