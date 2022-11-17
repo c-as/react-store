@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom"
 import logo from "../Assets/logo.svg"
 import styled from "styled-components"
 import { CartContext } from "../State/Cart"
-import { Accent, Primary } from "./Styles"
+import { Accent, ColorBox, Primary } from "./Styles"
 import SearchBar from "./SearchBar"
 
 const Styled = styled.header`
@@ -40,6 +40,10 @@ const Title = styled.h1`
   margin-right: auto;
 `
 
+const CartIndicator = styled(ColorBox)`
+  display: inline;
+`
+
 export default function Header() {
   const { itemCount: cartSize } = useContext(CartContext)
   const navigate = useNavigate()
@@ -64,7 +68,8 @@ export default function Header() {
             Home
           </NavLink>
           <NavLink to="/catalog?isOnSale=true">Deals</NavLink>
-          <NavLink to="/cart">Cart {cartSize > 0 && cartSize}</NavLink>
+          <NavLink to="/cart">Cart</NavLink>
+          {cartSize > 0 && <CartIndicator>{cartSize}</CartIndicator>}
         </nav>
       </Styled>
       <SearchBar onSearch={onSearch} />

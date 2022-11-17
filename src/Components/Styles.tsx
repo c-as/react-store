@@ -10,6 +10,7 @@ export const ColorBox = styled.p`
   background-color: ${Accent};
   border-radius: 0.3rem;
   width: fit-content;
+  color: white;
 `
 
 export const Input = styled.input`
@@ -37,6 +38,7 @@ export const Sale = styled(ColorBox)`
 
 export const Message = styled(ColorBox)`
   background-color: ${Secondary};
+  color: black;
 `
 
 export const Error = styled(ColorBox)`
