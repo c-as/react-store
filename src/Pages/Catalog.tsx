@@ -5,7 +5,6 @@ import styled from "styled-components"
 import useList from "../Hooks/useList"
 
 import CatalogItem from "../Components/CatalogItem"
-import SearchBar from "../Components/SearchBar"
 import { Button, ColorBox } from "../Components/Styles"
 
 const PageSelector = styled.div`
@@ -79,14 +78,6 @@ export default function List() {
     }
   }, [error, searchQuery, isLoading])
 
-  function onSearch(query: string) {
-    if (query.length > 0) {
-      navigate(`/catalog?q=${query}`)
-    } else {
-      navigate(`/`)
-    }
-  }
-
   function decrementPage() {
     setPageIdx(Math.max(pageIdx - 1, 0))
   }
@@ -101,7 +92,6 @@ export default function List() {
 
   return (
     <>
-      <SearchBar onSearch={onSearch} />
       <Catalog>
         {result ? (
           result.items.map((item) => <CatalogItem item={item} key={item._id} />)

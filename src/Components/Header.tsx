@@ -1,9 +1,10 @@
 import { useContext } from "react"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import logo from "../Assets/logo.svg"
 import styled from "styled-components"
 import { CartContext } from "../State/Cart"
 import { Accent, Primary } from "./Styles"
+import SearchBar from "./SearchBar"
 
 const Styled = styled.header`
   width: 100%;
@@ -45,20 +46,32 @@ const Title = styled.h1`
 
 export default function Header() {
   const { itemCount: cartSize } = useContext(CartContext)
+  const navigate = useNavigate()
+
+  function onSearch(query: string) {
+    if (query.length > 0) {
+      navigate(`/catalog?q=${query}`)
+    } else {
+      navigate(`/`)
+    }
+  }
 
   return (
-    <Styled>
-      <img src={logo} alt="" />
-      <Title>
-        <Link to="/">Atomic-Store</Link>
-      </Title>
-      <nav>
-        <NavLink end to="/">
-          Home
-        </NavLink>
-        <NavLink to="/catalog?isOnSale=true">Deals</NavLink>
-        <NavLink to="/cart">Cart {cartSize > 0 && cartSize}</NavLink>
-      </nav>
-    </Styled>
+    <>
+      <Styled>
+        <img src={logo} alt="" />
+        <Title>
+          <Link to="/">Atomic-Store</Link>
+        </Title>
+        <nav>
+          <NavLink end to="/">
+            Home
+          </NavLink>
+          <NavLink to="/catalog?isOnSale=true">Deals</NavLink>
+          <NavLink to="/cart">Cart {cartSize > 0 && cartSize}</NavLink>
+        </nav>
+      </Styled>
+      <SearchBar onSearch={onSearch} />
+    </>
   )
 }
