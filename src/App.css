@@ -3,7 +3,8 @@
   src: url(./Assets/RobotoSlab-VariableFont_wght.ttf);
 }
 
-* {
+html,
+body {
   font-family: Roboto, Arial;
 }
 
