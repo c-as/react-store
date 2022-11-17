@@ -5,7 +5,13 @@ import styled from "styled-components"
 import useList from "../Hooks/useList"
 
 import CatalogItem from "../Components/CatalogItem"
-import { Button, ColorBox } from "../Components/Styles"
+import { Button, ColorBox, Title } from "../Components/Styles"
+
+const Container = styled.div`
+  width: 75rem;
+  max-width: 100%;
+  margin: 0rem auto;
+`
 
 const PageSelector = styled.div`
   width: max-content;
@@ -28,9 +34,6 @@ const StyledButton = styled(Button)`
 `
 
 const Catalog = styled.div`
-  width: 75rem;
-  max-width: 100%;
-  margin: 0rem auto;
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
@@ -78,6 +81,18 @@ export default function List() {
     }
   }, [error, searchQuery, isLoading])
 
+  const title = useMemo(() => {
+    const params = new URLSearchParams(location.search)
+
+    if (params.get("q")) {
+      return `Results for query: '${params.get("q")}'`
+    } else if (params.get("isOnSale") === "true") {
+      return `Deals`
+    } else {
+      return `Catalog`
+    }
+  }, [location.search])
+
   function decrementPage() {
     setPageIdx(Math.max(pageIdx - 1, 0))
   }
@@ -91,7 +106,8 @@ export default function List() {
   }, [result])
 
   return (
-    <>
+    <Container>
+      <Title>{title}</Title>
       <Catalog>
         {result ? (
           result.items.map((item) => <CatalogItem item={item} key={item._id} />)
@@ -119,6 +135,6 @@ export default function List() {
           </>
         )}
       </PageSelector>
-    </>
+    </Container>
   )
 }

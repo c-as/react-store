@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
 import Sale from "../Components/Sale"
-import { ColorBox, Button, Input } from "../Components/Styles"
+import { ColorBox, Button, Input, Title } from "../Components/Styles"
 import useItem from "../Hooks/useItem"
 import { CartContext, CartAction, CartActionType } from "../State/Cart"
 
@@ -116,7 +116,7 @@ export default function Item() {
         <div>
           <ProductImg src={item.imageUrl} alt={item.name} />
           <Info>
-            <h2>{item.name}</h2>
+            <Title>{item.name}</Title>
             {item.isOnSale && <Sale>On Sale</Sale>}
             <Rating score={item.avgRating} />
             <p>{item.description}</p>

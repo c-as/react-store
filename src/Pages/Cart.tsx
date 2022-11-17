@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { CartAction, CartActionType, CartContext } from "../State/Cart"
 import CartItem from "../Components/CartItem"
 import styled from "styled-components"
-import { Button, ColorBox } from "../Components/Styles"
+import { Button, ColorBox, Title } from "../Components/Styles"
 
 const Styled = styled.div`
   width: 60rem;
@@ -51,6 +51,7 @@ export default function Cart() {
 
   return (
     <Styled>
+      <Title>Your Cart</Title>
       <Catalog>
         {items.length > 0 ? (
           items.map((item) => <CartItem item={item} key={item._id} />)

@@ -40,3 +40,8 @@ export const Input = styled.input`
     border: 1px solid indianred;
   }
 `
+
+export const Title = styled.h1`
+  font-family: "Roboto Slab";
+  padding-left: 1.5rem;
+`
