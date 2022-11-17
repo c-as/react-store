@@ -71,6 +71,10 @@ const Error = styled(Message)`
   background-color: lightpink;
 `
 
+const Name = styled(Title)`
+  padding: 0;
+`
+
 export default function Item() {
   const params = useParams()
 
@@ -116,7 +120,7 @@ export default function Item() {
         <div>
           <ProductImg src={item.imageUrl} alt={item.name} />
           <Info>
-            <Title>{item.name}</Title>
+            <Name>{item.name}</Name>
             {item.isOnSale && <Sale>On Sale</Sale>}
             <Rating score={item.avgRating} />
             <p>{item.description}</p>
