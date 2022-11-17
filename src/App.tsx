@@ -35,9 +35,7 @@ function App() {
           />
         </Routes>
       </Router>
-      <Footer>
-        <a href="https://github.com/casbrugman/super-store">Source code</a>
-      </Footer>
+      <Footer />
     </CartProvider>
   )
 }
