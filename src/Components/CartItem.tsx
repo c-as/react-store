@@ -15,10 +15,6 @@ const Styled = styled.div`
   border-radius: 0.3rem;
   padding: 1rem;
   width: 100%;
-  a {
-    color: black;
-    text-decoration: none;
-  }
   @media (orientation: portrait) {
     padding-bottom: 0.5rem;
   }

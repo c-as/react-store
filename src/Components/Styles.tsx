@@ -22,6 +22,9 @@ export const Button = styled(ColorBox)`
     font: inherit;
     text-decoration: inherit;
   }
+  :hover {
+    text-decoration: underline;
+  }
 `
 
 export const Input = styled.input`

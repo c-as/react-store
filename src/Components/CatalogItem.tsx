@@ -13,12 +13,11 @@ const Styled = styled.div`
   padding: 1rem;
   width: 15rem;
   flex-grow: 1;
-  a {
-    color: black;
-    text-decoration: none;
-  }
   header {
     font-size: 1.5rem;
+  }
+  a {
+    text-decoration-color: white;
   }
 `
 
@@ -71,7 +70,7 @@ export default function CatalogItem({ item }: { item: ItemInterface }) {
         {item.isOnSale && <StyledSale>On Sale</StyledSale>}
       </Info>
       <Link to={`/item/${item._id}`}>
-        <StyledButton>View Item</StyledButton>
+        <StyledButton>View Product</StyledButton>
       </Link>
     </Styled>
   )

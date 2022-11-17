@@ -25,7 +25,6 @@ const Styled = styled.header`
     a {
       padding: 0.5rem;
       margin-left: 0.5rem;
-      text-decoration: none;
     }
     .active {
       color: ${Accent};
@@ -39,9 +38,6 @@ const Title = styled.h1`
   margin-top: auto;
   margin-bottom: auto;
   margin-right: auto;
-  a {
-    text-decoration: none;
-  }
 `
 
 export default function Header() {
