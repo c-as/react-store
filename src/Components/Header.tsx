@@ -17,6 +17,7 @@ const Styled = styled.header`
   }
   img {
     height: 3rem;
+    display: block;
   }
   nav {
     margin-top: auto;
@@ -59,7 +60,9 @@ export default function Header() {
   return (
     <>
       <Styled>
-        <img src={logo} alt="" />
+        <Link to="/">
+          <img src={logo} alt="" />
+        </Link>
         <Title>
           <Link to="/">Atomic-Store</Link>
         </Title>
