@@ -68,13 +68,13 @@ export default function List() {
     } else {
       if (error) {
         return error.toString()
-      } else if (searchQuery) {
+      } else if (searchQuery && result && Number(result.total) === 0) {
         return `No results for query: '${searchQuery}'`
       } else {
         return
       }
     }
-  }, [error, searchQuery, isLoading])
+  }, [error, searchQuery, isLoading, result])
 
   const title = useMemo(() => {
     const params = new URLSearchParams(location.search)
