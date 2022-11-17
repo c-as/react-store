@@ -1,8 +1,7 @@
 import Rating from "./Rating"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import Sale from "./Sale"
-import { Button } from "./Styles"
+import { Button, Sale } from "./Styles"
 import { ItemInterface } from "../Lib/Api"
 
 const Styled = styled.div`

@@ -2,8 +2,14 @@ import { useState, useEffect, useContext, ChangeEvent } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rating from "../Components/Rating"
-import Sale from "../Components/Sale"
-import { Button, Input, Title, Message, Error } from "../Components/Styles"
+import {
+  Button,
+  Input,
+  Title,
+  Message,
+  Error,
+  Sale,
+} from "../Components/Styles"
 import useItem from "../Hooks/useItem"
 import { CartContext, CartAction, CartActionType } from "../State/Cart"
 

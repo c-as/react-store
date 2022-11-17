@@ -45,6 +45,12 @@ export const Input = styled.input`
   }
 `
 
+export const Sale = styled(ColorBox)`
+  width: fit-content;
+  background-color: ${SecondaryAccent};
+  color: white;
+`
+
 export const Message = styled(ColorBox)`
   background-color: ${Secondary};
 `
